@@ -1,0 +1,44 @@
+@use '../../styles/' as *;
+
+.root {
+    font-weight: 400;
+}
+
+.body-1 {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.body-2 {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.body-3 {
+    font-size: 10px;
+    line-height: 14px;
+}
+
+.medium {
+    font-weight: 500;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.black {
+    color: $color-black;
+}
+
+.white {
+    color: $color-white;
+}
+
+.neutral {
+    color: $color-neutral;
+}
+
+.neutral-2 {
+    color: $color-neutral-2;
+}

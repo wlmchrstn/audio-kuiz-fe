@@ -1,0 +1,30 @@
+@use '../../styles/' as *;
+
+.root {
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    left: 50%;
+    padding: 16px 24px;
+    position: fixed;
+    top: 50px;
+    transform: translate(-50%, 0);
+    width: 300px;
+    z-index: $z-index-overflow;
+
+    @include tablet() {
+        top: 100px;
+        width: 500px;
+    }
+}
+
+.failed {
+    background-color: $color-red;
+}
+
+.warning {
+    background-color: $color-yellow;
+}
+
+.success {
+    background-color: $color-green;
+}

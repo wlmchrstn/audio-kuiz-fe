@@ -1,0 +1,143 @@
+@use '../../styles/' as *;
+
+.root {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: $max-width-sm;
+    padding: 16px 24px;
+
+    @include tablet() {
+        max-width: $max-width-md;
+        padding: 40px 24px;
+    }
+
+    @include desktop() {
+        max-width: $max-width-lg;
+    }
+}
+
+.exam {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $color-white;
+    border: 1px solid $color-black;
+    padding: 16px 8px;
+    border-radius: 10px;
+
+    &-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+
+.status {
+    padding: 4px 8px;
+    border-radius: 5px;
+    max-width: 64px;
+    cursor: default;
+    text-align: center;
+}
+
+.Pending {
+    background-color: $color-yellow;
+}
+
+.Published {
+    background-color: $color-green;
+}
+
+.Archived {
+    background-color: $color-neutral-2;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: auto;
+
+    button {
+        padding: 4px 8px;
+        border-radius: 5px;
+        width: 80px;
+    }
+
+    .publish {
+        width: 100px;
+    }
+}
+
+.questions {
+    padding-top: 24px;
+
+    .button-add {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 1px solid $color-black;
+        background-color: $color-white;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin: 16px 0;
+
+        img {
+            height: 24px;
+        }
+    }
+}
+
+.exams > .question-container:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.question-container {
+    display: flex;
+    flex-direction: row;
+    background-color: $color-white;
+    border: 1px solid $color-black;
+    border-radius: 10px;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.modal-question {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: $max-width-sm;
+
+    @include tablet() {
+        max-width: $max-width-md;
+        padding: 40px 24px;
+    }
+
+    @include desktop() {
+        max-width: $max-width-lg;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+    .form-field:not(:last-child) {
+        margin-bottom: 8px;
+    }
+}
+
+.error {
+    color: $color-red;
+}

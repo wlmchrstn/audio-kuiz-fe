@@ -1,0 +1,39 @@
+@use '../../styles' as *;
+
+.root {
+    align-items: center;
+    border: 1px solid $color-blue;
+    border-radius: 16px;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    height: fit-content;
+    justify-content: center;
+    line-height: 20px;
+    max-height: 54px;
+    padding: 14px 24px;
+    text-align: center;
+    width: 100%;
+}
+
+.root:disabled {
+    background-color: $color-neutral;
+    border-color: $color-neutral;
+}
+
+.primary {
+    background-color: $color-blue;
+    color: $color-white;
+}
+
+.secondary {
+    background-color: $color-white;
+    color: $color-black;
+}
+
+.danger {
+    background-color: $color-red;
+    color: $color-white;
+    border-color: $color-red;
+}

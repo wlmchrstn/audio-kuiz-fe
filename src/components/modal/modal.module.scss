@@ -1,0 +1,33 @@
+@use '../../styles' as *;
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: $z-index-front;
+}
+
+.content {
+    background-color: $color-white;
+    border-radius: 16px;
+    left: 50%;
+    padding: 24px 32px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: $z-index-overflow;
+
+    .image {
+        align-self: right;
+        border-radius: 50%;
+        display: flex;
+        margin-left: auto;
+    }
+
+    .image:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+}
