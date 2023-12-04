@@ -1,5 +1,7 @@
 /* stylelint-disable */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import "~react-datepicker/dist/react-datepicker.css";
+@import '~react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 html,
 body,
@@ -324,3 +326,6 @@ textarea {
     background-size: cover;
 }
 
+.react-datepicker-wrapper {
+  width: 100%;
+}

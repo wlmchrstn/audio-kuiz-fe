@@ -113,7 +113,8 @@
     padding: 16px;
 }
 
-.modal-question {
+.modal-question,
+.modal-exam-edit {
     width: 100%;
     box-sizing: border-box;
     max-width: $max-width-sm;
@@ -140,4 +141,13 @@
 
 .error {
     color: $color-red;
+}
+
+.wysiwyg {
+  margin-top: 10px;
+  border: 1px solid rgb(215, 215, 215);
+
+  .rdw-editor-main {
+    padding: 0 20px 10px;
+  }
 }

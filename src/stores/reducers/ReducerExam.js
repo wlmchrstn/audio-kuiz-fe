@@ -1,8 +1,9 @@
 import {
     EXAM_CREATE_SUCCESS,
     EXAM_CREATE_FAIL,
-    EXAM_SHOW_ACTIVE,
+    EXAM_SHOW_ALL,
     EXAM_GET_EDIT,
+    EXAM_UPDATE,
     EXAM_PUBLISH,
 } from '../actions/types'
 
@@ -46,7 +47,7 @@ export default (state = initialState, action) => {
                 message: payload.message,
                 messageStatus: 'failed',
             }
-        case EXAM_SHOW_ACTIVE:
+        case EXAM_SHOW_ALL:
             return {
                 ...state,
                 loading: payload.loading,
@@ -63,6 +64,15 @@ export default (state = initialState, action) => {
                 exam: payload.exam,
                 examQuestionList: payload.question,
             }
+        case EXAM_UPDATE:
+          return {
+            ...state,
+            loading: payload.loading,
+            buttonLoading: payload.buttonLoading,
+            message: payload.message,
+            messageStatus: payload.messageStatus,
+            exam: payload.exam,
+          }
         case EXAM_PUBLISH:
             return {
                 ...state,

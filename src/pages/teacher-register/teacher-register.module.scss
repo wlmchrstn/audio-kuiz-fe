@@ -1,87 +1,83 @@
 @use '../../styles/' as *;
 
 .root {
-    align-items: center;
-    background-color: $color-blue;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100vw;
+  align-items: center;
+  background-color: $color-blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
 }
 
 .container {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    max-width: $max-width-sm;
-    padding: 16px 24px;
-    width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: $max-width-sm;
+  padding: 16px 24px;
+  width: 100%;
 
-    @include tablet() {
-        max-width: $max-width-md;
-        padding: 40px 24px;
-    }
+  @include tablet() {
+    max-width: $max-width-md;
+    padding: 40px 24px;
+  }
 
-    @include desktop() {
-        max-width: $max-width-lg;
-    }
+  @include desktop() {
+    max-width: $max-width-lg;
+  }
 }
 
 .wrapper {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 30px;
-    max-width: 532px;
-    padding: 40px;
-    width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  max-width: 532px;
+  padding: 40px;
+  width: 100%;
 
-    @include tablet() {
-        min-height: 600px;
-    }
-
-    h1 {
-        margin-bottom: 24px;
-    }
+  h1 {
+    margin-bottom: 24px;
+  }
 }
 
 .form {
-    .input {
-        margin-bottom: 16px;
-    }
+  .input {
+    margin-bottom: 16px;
+  }
 
-    .label {
-        margin-bottom: 4px;
-    }
+  .label {
+    margin-bottom: 4px;
+  }
 
-    button {
-        margin-top: 8px;
-    }
+  button {
+    margin-top: 8px;
+  }
 }
 
 .login {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
 
-    @include tablet() {
-        margin-top: 30px;
-    }
+  @include tablet() {
+    margin-top: 30px;
+  }
 
-    @include desktop() {
-        margin-top: 40px;
-    }
+  @include desktop() {
+    margin-top: 40px;
+  }
 
-    a {
-        color: $color-blue;
-        font-size: 12px;
-        font-weight: 700;
-        margin-left: 8px;
-        text-decoration: none;
-    }
+  a {
+    color: $color-blue;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 8px;
+    text-decoration: none;
+  }
 }
 
 .error {
-    color: $color-red;
+  color: $color-red;
 }
