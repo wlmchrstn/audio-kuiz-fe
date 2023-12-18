@@ -1,0 +1,71 @@
+@use '../../styles/' as *;
+
+.exams {
+  &-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid $color-neutral;
+    border-radius: 10px;
+    background-color: $color-white;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    &-right {
+      align-items: flex-end;
+    }
+  }
+
+  &-teacher {
+    margin-top: 24px;
+  }
+
+  &-action {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: auto;
+  }
+
+  &-edit-button {
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
+
+  &-code {
+    padding:4px 8px;
+    border-radius: 5px;
+  }
+
+  &-code:hover {
+    cursor: pointer;
+  }
+
+  .status-wrapper {
+    padding: 4px 8px;
+    border-radius: 5px;
+    max-width: 48px;
+    cursor: default;
+    text-align: center;
+  }
+
+  .Pending {
+    background-color: $color-yellow;
+  }
+
+  .Published {
+    background-color: $color-green;
+  }
+
+  .Archived {
+    background-color: $color-neutral-2;
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}

@@ -32,3 +32,16 @@
     width: 200px;
     align-self: center;
 }
+
+.question-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.question-name {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #000;
+  margin-bottom: 8px;
+}

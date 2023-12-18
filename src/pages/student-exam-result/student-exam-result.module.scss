@@ -20,33 +20,35 @@
 
 .header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   margin-bottom: 40px;
-
-  &-button {
-    max-width: 240px;
-  }
 }
 
-.form {
-  width: 600px;
+.container {
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
 }
 
-.form-field:not(:last-child) {
-  margin-bottom: 8px;
+.wrapper {
+  padding: 12px;
+  border: 1px solid #000;
 }
 
-.exams {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+.wrapper:not(:last-child) {
+  margin-bottom: 16px;
 }
 
-.error {
-  color: $color-red;
+.question {
+  background-color: #fff;
+  padding: 12px;
+  border: 1px solid #000;
+  margin-bottom: 12px;
+}
+
+.answer {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
 }

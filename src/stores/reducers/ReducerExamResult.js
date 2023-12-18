@@ -1,6 +1,11 @@
 import {
   EXAM_RESULT_CREATE_SUCCESS,
-  EXAM_RESULT_GET_STUDENT_SUCCESS
+  EXAM_RESULT_CREATE_FAIL,
+  EXAM_RESULT_GET_STUDENT_SUCCESS,
+  EXAM_RESULT_GET_STUDENT_FAIL,
+  EXAM_RESULT_FINISH,
+  EXAM_RESULT_GET_BY_ID,
+  EXAM_RESULT_GET_BY_EXAM_ID,
 } from '../actions/types'
 
 const initialState = {
@@ -31,37 +36,65 @@ const initialState = {
   },
 };
 
-export default (state = initialState, action) => {
+const ReducerExamResult = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch(type) {
     case EXAM_RESULT_CREATE_SUCCESS:
       return {
         ...state,
-        loading: payload.loading,
         buttonLoading: payload.buttonLoading,
         message: payload.message,
         messageStatus: 'success',
-        examResult: payload.data,
+        examResult: payload.examResult,
+      }
+    case EXAM_RESULT_CREATE_FAIL:
+      return {
+        ...state,
+        buttonLoading: payload.buttonLoading,
+        message: payload.message,
+        messageStatus: 'failed',
       }
     case EXAM_RESULT_GET_STUDENT_SUCCESS:
       return {
         ...state,
         loading: payload.loading,
-        buttonLoading: payload.buttonLoading,
         message: payload.message,
         messageStatus: 'success',
-        examResultList: payload.data,
+        examResultList: payload.examResultList,
       }
-    case EXAM_RESULT_FAIL:
+    case EXAM_RESULT_GET_STUDENT_FAIL:
       return {
         ...state,
         loading: payload.loading,
-        buttonLoading: payload.buttonLoading,
         message: payload.message,
-        messageStatus: 'failed'
+        messageStatus: 'failed',
+      }
+    case EXAM_RESULT_FINISH:
+      return {
+        ...state,
+        message: payload.message,
+        messageStatus: 'success',
+        examResult: payload.examResult,
+      }
+    case EXAM_RESULT_GET_BY_ID:
+      return {
+        ...state,
+        loading: payload.loading,
+        message: payload.message,
+        messageStatus: payload.messageStatus,
+        examResult: payload.examResult,
+      }
+    case EXAM_RESULT_GET_BY_EXAM_ID:
+      return {
+        ...state, loading: payload.loading,
+        message: payload.message,
+        messageStatus: payload.messageStatus,
+        examResultList: payload.examResultList,
       }
     default:
       return state;
   }
-}
+};
+
+export default ReducerExamResult;

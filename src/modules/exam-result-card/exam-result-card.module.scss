@@ -1,0 +1,15 @@
+@use '../../styles/' as *;
+
+.container {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
+.button {
+  max-width: 180px;
+  margin-left: auto;
+}

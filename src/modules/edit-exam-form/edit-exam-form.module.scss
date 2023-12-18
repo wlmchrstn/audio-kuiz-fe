@@ -1,0 +1,19 @@
+@use '../../styles/' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+}
+
+.form-field:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.error {
+  color: $color-red;
+}

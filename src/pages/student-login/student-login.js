@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect }  from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import styles from './teacher-login.module.scss';
+import styles from './student-login.module.scss';
 
 // Components
 import Title from '../../components/title/title';
@@ -13,9 +13,9 @@ import Button from '../../components/button/button';
 import Notification from '../../components/notification/notification';
 
 // Actions
-import { loginTeacher } from '../../stores/actions/ActionAuth';
+import { loginStudent } from '../../stores/actions/ActionAuth';
 
-const TeacherLoginPage = () => {
+const StudentLoginPage = () => {
   const [notification, setNotification] = useState(false);
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const {
@@ -35,7 +35,7 @@ const TeacherLoginPage = () => {
   }, []);
 
   const handleLogin = async data => {
-    dispatch(loginTeacher(data, navigate, setNotification));
+    dispatch(loginStudent(data, navigate, setNotification));
   };
 
   return (
@@ -54,18 +54,18 @@ const TeacherLoginPage = () => {
             variant={'heading-1'}
             color={'black'}
             weight={'bold'}
-          >{'Masuk sebagai dosen'}</Title>
+          >{'Masuk sebagai mahasiswa'}</Title>
           <Paragraph variant={'body-2'} className={styles.label}>
-            {'Email'}
+            {'NIM'}
           </Paragraph>
           <Input className={styles.input}>
             <input
               type={'text'}
-              placeholder={'Masukkan Email'}
-              {...register('email', { required: true })}
+              placeholder={'Masukkan NIM'}
+              {...register('nim', { required: true })}
             />
           </Input>
-          {errors.email && errors.email.type === 'required' && (
+          {errors.nim && errors.nim.type === 'required' && (
             <p className={styles.error}>{'*Required field*'}</p>
           )}
           <Paragraph variant={'body-2'} className={styles.label}>
@@ -90,4 +90,4 @@ const TeacherLoginPage = () => {
   );
 };
 
-export default TeacherLoginPage;
+export default StudentLoginPage;
