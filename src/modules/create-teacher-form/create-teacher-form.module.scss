@@ -1,0 +1,23 @@
+@use '../../styles/' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.wysiwyg {
+  margin-top: 10px;
+  border: 1px solid rgb(215, 215, 215);
+
+  .rdw-editor-main {
+    padding: 0 20px 10px;
+  }
+}
+
+.error {
+  color: $color-red;
+}

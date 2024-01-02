@@ -10,6 +10,8 @@ import StudentExamPage from '../pages/student-exam/student-exam';
 import StudentExamResultPage from '../pages/student-exam-result/student-exam-result';
 import ExamEditPage from '../pages/exam-edit/exam-edit';
 import ExamResultPage from '../pages/exam-result/exam-result';
+import AdminLoginPage from '../pages/admin-login/admin-login';
+import AdminPage from '../pages/admin/admin';
 import Custom404 from '../pages/custom404/custom404';
 
 const Router = () => {
@@ -24,6 +26,8 @@ const Router = () => {
       <Route path={'/student-result/:exam_result_id'} element={<StudentExamResultPage />} />
       <Route path={'/exam-edit/:id'} element={<ExamEditPage />} />
       <Route path={'/exam-result/:exam_result_id'} element={<ExamResultPage />} />
+      <Route path={'/admin-login'} element={<AdminLoginPage />} />
+      <Route path={'/admin'} element={<AdminPage />} />
       <Route path={'*'} element={<Custom404 />} />
     </Routes>
   );

@@ -1,0 +1,54 @@
+@use '../../styles' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  padding: 16px;
+  border: 1px solid $color-neutral-2;
+  border-radius: 8px;
+  height: 240px;
+  box-sizing: border-box;
+}
+
+.container > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.nav-item {
+  color: $color-white;
+  padding: 8px 0;
+  border-bottom: 1px solid $color-neutral-2;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  color: $color-blue-3;
+  border-color: $color-blue-3;
+
+  svg {
+    stroke: $color-blue-3;
+  }
+}
+
+.selected {
+  color: $color-blue-3;
+  border-color: $color-blue-3;
+
+  svg {
+    stroke: $color-blue-3;
+  }
+}
+
+img {
+  height: 24px;
+  color: $color-neutral;
+}

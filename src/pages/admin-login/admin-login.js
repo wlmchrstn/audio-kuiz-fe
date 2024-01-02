@@ -54,7 +54,7 @@ const AdminLoginPage = () => {
             variant={'heading-1'}
             color={'black'}
             weight={'bold'}
-          >{'Masuk sebagai admin'}</Title>
+          >{'Login sebagai admin'}</Title>
           <Paragraph variant={'body-2'} className={styles.label}>
             {'Username'}
           </Paragraph>
@@ -74,7 +74,7 @@ const AdminLoginPage = () => {
           <Input className={styles.input}>
             <input
               type={'password'}
-              placeholder={'Masukkan password'}
+              placeholder={'Masukkan Password'}
               {...register('password', { required: true })}
             />
           </Input>
@@ -82,7 +82,7 @@ const AdminLoginPage = () => {
             <p className={styles.error}>{'*Required field*'}</p>
           )}
           <Button type={'submit'} variant={'primary'} color={'white'}>
-            {buttonLoading ? <Spinner variant={'button'} /> : 'Masuk'}
+            {buttonLoading ? <Spinner variant={'button'} /> : 'Login'}
           </Button>
         </form>
       </div>

@@ -1,0 +1,66 @@
+@use '../../styles/' as *;
+
+.root {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  max-width: $max-width-sm;
+  padding: 16px 24px;
+  background-color: $color-neutral-4;
+  height: 100vh;
+
+  @include tablet() {
+    max-width: $max-width-md;
+    padding: 40px 24px;
+  }
+
+  @include desktop() {
+    max-width: $max-width-lg;
+  }
+}
+
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+  border-left: 1px solid $color-neutral-2;
+  padding-left: 24px;
+  width: 100%;
+  box-sizing: border-box;
+
+  .header {
+    margin-bottom: 16px;
+  }
+}
+
+.button-add {
+  color: $color-white;
+  border: 1px solid $color-neutral-2;
+  border-radius: 8px;
+  width: 100%;
+  height: 132px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button-add:hover {
+  background-color: $color-blue-3;
+  color: $color-white;
+  border: 1px solid $color-blue-3;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.modal {
+  width: 100%;
+  max-width: $max-width-sm;
+}

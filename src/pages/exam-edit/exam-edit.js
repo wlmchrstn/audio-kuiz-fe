@@ -149,6 +149,7 @@ const ExamEditPage = () => {
         <EditQuestionForm
           setIsOpen={setIsEditQuestionOpen}
           setNotification={setNotification}
+          setRefresh={setRefresh}
         />
       </Modal>
       <Notification

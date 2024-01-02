@@ -1,8 +1,7 @@
 import {
-  STUDENT_GET,
-  STUDENT_GET_ALL,
-  STUDENT_CREATE_SUCCESS,
-  STUDENT_CREATE_FAIL,
+  TEACHER_GET_ALL,
+  TEACHER_CREATE_SUCCESS,
+  TEACHER_CREATE_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -10,49 +9,37 @@ const initialState = {
   buttonLoading: false,
   message: '',
   messageStatus: '',
-  studentList: [],
-  student: {
+  teacherList: [],
+  teacher: {
     name: '',
-    nim: '',
-    prodi: '',
     email: '',
     status: '',
   },
-}
+};
 
-const ReducerStudent = (state = initialState, action) => {
+const ReducerTeacher = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch(type) {
-    case STUDENT_GET:
+    case TEACHER_GET_ALL:
       return {
         ...state,
         loading: payload.loading,
         buttonLoading: payload.buttonLoading,
         message: payload.message,
         messageStatus: payload.messageStatus,
-        student: payload.student,
-        studentExamList: payload.studentExamList,
+        teacherList: payload.teacherList,
       }
-    case STUDENT_GET_ALL:
+    case TEACHER_CREATE_SUCCESS:
       return {
         ...state,
         loading: payload.loading,
         buttonLoading: payload.buttonLoading,
         message: payload.message,
         messageStatus: payload.messageStatus,
-        studentList: payload.studentList,
+        teacher: payload.teacher,
       }
-    case STUDENT_CREATE_SUCCESS:
-      return {
-        ...state,
-        loading: payload.loading,
-        buttonLoading: payload.buttonLoading,
-        message: payload.message,
-        messageStatus: payload.messageStatus,
-        student: payload.student,
-      }
-    case STUDENT_CREATE_FAIL:
+    case TEACHER_CREATE_FAIL:
       return {
         ...state,
         loading: payload.loading,
@@ -62,7 +49,7 @@ const ReducerStudent = (state = initialState, action) => {
       }
     default:
       return state;
-  }
+  };
 };
 
-export default ReducerStudent;
+export default ReducerTeacher;

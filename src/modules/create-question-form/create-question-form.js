@@ -62,15 +62,6 @@ const CreateQuestionForm = ({ id, setIsOpen, setNotification, setRefresh }) => {
         )}
       </div>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Jawaban'}</Paragraph>
-        <Input>
-          <input type={'text'} placeholder={'Jawaban'} {...register('answer', { required: true })} />
-        </Input>
-        {errors.answer && errors.answer.type === 'required' && (
-          <p className={styles.error}>{'*Required field*'}</p>
-        )}
-      </div>
-      <div className={styles['form-field']}>
         <Paragraph variant={'body-2'}>{'Skor Maksimal'}</Paragraph>
         <Input>
           <input type={'number'} {...register('max_score', { required: true })} />

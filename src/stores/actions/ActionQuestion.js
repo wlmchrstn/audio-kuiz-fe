@@ -1,5 +1,7 @@
 import axios from "axios";
 import { setToken } from '../../utils/helper';
+import { convertToRaw } from "draft-js";
+import draftToHtml from 'draftjs-to-html';
 import {
   UNAUTHENTICATED,
   QUESTION_CREATE_SUCCESS,
@@ -118,7 +120,7 @@ export const getQuestionForEdit = (id, modal, navigate) => async dispatch => {
   };
 };
 
-export const updateQuestion = (id, data, modal, notification, navigate) => async dispatch => {
+export const updateQuestion = (id, data, name, modal, notification, refresh, navigate) => async dispatch => {
   try {
     dispatch({
       type: QUESTION_UPDATE_SUCCESS,
@@ -129,11 +131,27 @@ export const updateQuestion = (id, data, modal, notification, navigate) => async
 
     if (sessionStorage.getItem('token')) {
       setToken(sessionStorage.getItem('token'));
+    };
+
+    let question;
+
+    console.log(typeof data.name);
+    if (typeof data.name === 'object') {
+      question = name;
+      console.log('if');
+    } else {
+      question = data.name;
     }
 
     const { data: response } = await axios.put(
       `${process.env.REACT_APP_BASE_URL}/api/question/update/${id}`,
-      data,
+      {
+        name: question,
+        answer: data.answer,
+        max_score: data.max_score,
+        question_time: data.question_time,
+        answer_time: data.answer_time,
+      }
     );
 
     dispatch({
@@ -146,30 +164,32 @@ export const updateQuestion = (id, data, modal, notification, navigate) => async
     });
 
     modal(false);
+    refresh(prev => !prev);
     notification(true);
   } catch(error) {
-    if (error.response.status === 403) {
-      dispatch({
-        type: UNAUTHENTICATED,
-      });
-      navigate('/teacher-login');
-    };
+    console.log(error);
+    // if (error.response.status === 403) {
+    //   dispatch({
+    //     type: UNAUTHENTICATED,
+    //   });
+    //   navigate('/teacher-login');
+    // };
 
-    if (error.response.status === 401) {
-      dispatch({
-        type: UNAUTHENTICATED,
-      });
-      navigate('/');
-    };
+    // if (error.response.status === 401) {
+    //   dispatch({
+    //     type: UNAUTHENTICATED,
+    //   });
+    //   navigate('/');
+    // };
 
-    dispatch({
-      type: QUESTION_UPDATE_FAIL,
-      payload: {
-        buttonLoading: false,
-        message: error.response.data.message || 'Unexpected Error',
-      }
-    })
+    // dispatch({
+    //   type: QUESTION_UPDATE_FAIL,
+    //   payload: {
+    //     buttonLoading: false,
+    //     message: error.response.data.message || 'Unexpected Error',
+    //   }
+    // })
 
-    notification(true);
+    // notification(true);
   };
 };

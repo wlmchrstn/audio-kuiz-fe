@@ -5,14 +5,16 @@ import ReducerQuestion from './ReducerQuestion';
 import ReducerStudent from './ReducerStudent';
 import ReducerExamResult from './ReducerExamResult';
 import ReducerAnswer from './ReducerAnswer';
+import ReducerTeacher from './ReducerTeacher';
 
 const rootReducer = combineReducers({
-    ReducerAuth,
-    ReducerExam,
-    ReducerQuestion,
-    ReducerStudent,
-    ReducerExamResult,
-    ReducerAnswer,
+  ReducerAuth,
+  ReducerExam,
+  ReducerQuestion,
+  ReducerStudent,
+  ReducerExamResult,
+  ReducerAnswer,
+  ReducerTeacher,
 });
 
 export default rootReducer;

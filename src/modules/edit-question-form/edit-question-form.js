@@ -37,11 +37,11 @@ const EditQuestionForm = ({ setIsOpen, setNotification, setRefresh }) => {
   const dispatch = useDispatch();
   const onEditorStateChange = editorState => {
     setEditorState(editorState);
-    return field.onChange(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+    return field.onChange(draftToHtml(convertToRaw(editorState.getCurrentContent())));
   };
 
   const handleQuestion = async (data) => {
-    dispatch(updateQuestion(question?._id, data, setIsOpen, setNotification, setRefresh, navigate));
+    dispatch(updateQuestion(question?._id, data, question?.name, setIsOpen, setNotification, setRefresh, navigate));
   };
 
   return (
@@ -60,15 +60,6 @@ const EditQuestionForm = ({ setIsOpen, setNotification, setRefresh }) => {
           />
         </div>
         {errors.name && errors.name.type === 'required' && (
-          <p className={styles.error}>{'*Required field*'}</p>
-        )}
-      </div>
-      <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Jawaban'}</Paragraph>
-        <Input>
-          <input type={'text'} placeholder={'Jawaban'} {...register('answer', { required: true })} defaultValue={question?.answer} />
-        </Input>
-        {errors.answer && errors.answer.type === 'required' && (
           <p className={styles.error}>{'*Required field*'}</p>
         )}
       </div>
