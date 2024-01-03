@@ -19,6 +19,7 @@ import CreateStudentForm from '../../modules/create-student-form/create-student-
 // Actions
 import { getTeacherAll } from '../../stores/actions/ActionTeacher';
 import { getStudentAll } from '../../stores/actions/ActionStudent';
+import { getAdmin } from '../../stores/actions/ActionAdmin';
 
 // Icons
 import { ReactComponent as PlusIcon } from '../../assets/icons/fi_plus.svg';
@@ -41,6 +42,9 @@ const AdminPage = () => {
     if (view === 'Student') {
       dispatch(getStudentAll(notification, navigate));
     }
+    if (view === 'Profile') {
+      dispatch(getAdmin(notification, navigate));
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view, refresh]);
 
@@ -54,7 +58,7 @@ const AdminPage = () => {
           </div>
           {ReducerTeacher.teacherList.map((value, index) => {
             return (
-              <TeacherCard key={index} value={value} />
+              <TeacherCard key={index} value={value} notification={setNotification} refresh={setRefresh} />
             );
           })}
         </>
@@ -74,7 +78,7 @@ const AdminPage = () => {
           </div>
           {ReducerStudent.studentList.map((value, index) => {
             return (
-              <StudentCard key={index} value={value} />
+              <StudentCard key={index} value={value}  notification={setNotification} refresh={setRefresh} />
             );
           })}
         </>
@@ -129,10 +133,6 @@ const AdminPage = () => {
             <div className={styles.list}>
               {ReducerStudent.loading ? <Spinner variant={'page'} /> : mapStudent()}
             </div>
-          </>
-        ) : view === 'Profile' ? (
-          <>
-            {'Profile'}
           </>
         ) : null}
       </div>

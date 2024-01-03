@@ -50,5 +50,11 @@
 .answer {
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  justify-content: space-between;
+
+  .nilai {
+    max-width: 120px;
+    padding: 8px 12px;
+    margin-top: auto;
+  }
 }

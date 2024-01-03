@@ -6,6 +6,8 @@ import {
   STUDENT_GET_ALL,
   STUDENT_CREATE_SUCCESS,
   STUDENT_CREATE_FAIL,
+  STUDENT_DELETE_SUCCESS,
+  STUDENT_DELETE_FAIL,
 } from './types';
 
 export const getStudent = (notification, navigate) => async dispatch => {
@@ -50,7 +52,7 @@ export const getStudent = (notification, navigate) => async dispatch => {
       dispatch({
         type: UNAUTHENTICATED,
       });
-      navigate('/student-login');
+      navigate('/admin-login');
     };
 
     if (error.response.status === 401) {
@@ -85,8 +87,9 @@ export const getStudentAll = (notification, navigate) => async dispatch => {
     }
 
     const { data: response } = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/api/student/get-all`
+      `${process.env.REACT_APP_BASE_URL}/api/student/active`
     );
+
     dispatch({
       type: STUDENT_GET_ALL,
       payload: {
@@ -99,7 +102,7 @@ export const getStudentAll = (notification, navigate) => async dispatch => {
       dispatch({
         type: UNAUTHENTICATED,
       });
-      navigate('/student-login');
+      navigate('/admin-login');
     };
 
     if (error.response.status === 401) {
@@ -156,7 +159,7 @@ export const createStudent = (data, modal, notification, refresh, navigate) => a
       dispatch({
         type: UNAUTHENTICATED,
       });
-      navigate('/student-login');
+      navigate('/admin-login');
     };
 
     if (error.response.status === 401) {
@@ -178,4 +181,61 @@ export const createStudent = (data, modal, notification, refresh, navigate) => a
 
     notification(true);
   }
+};
+
+export const deleteStudent = (id, notification, refresh, navigate) => async dispatch => {
+  try {
+    dispatch({
+      type: STUDENT_DELETE_SUCCESS,
+      payload: {
+        buttonLoading: true,
+      },
+    });
+
+    if (sessionStorage.getItem('token')) {
+      setToken(sessionStorage.getItem('token'));
+    };
+
+    const { data: response } = await axios.delete(
+      `${process.env.REACT_APP_BASE_URL}/api/student/delete/${id}`
+    );
+
+    dispatch({
+      type: STUDENT_DELETE_SUCCESS,
+      payload: {
+        buttonLoading: false,
+        message: response.message || 'Student deleted',
+        messageStatus: 'success',
+      },
+    });
+
+    notification(true);
+    refresh(prev => !prev);
+  } catch(error) {
+    if (error.response.status === 403) {
+      dispatch({
+        type: UNAUTHENTICATED,
+      });
+      navigate('/admin-login');
+    };
+
+    if (error.response.status === 401) {
+      dispatch({
+        type: UNAUTHENTICATED,
+      });
+      navigate('/');
+    };
+
+    dispatch({
+      type: STUDENT_DELETE_FAIL,
+      payload: {
+        loading: false,
+        buttonLoading: false,
+        message: error.response.data.message || 'Unexpected error',
+        messageStatus: 'failed'
+      }
+    });
+
+    notification(true);
+  };
 };

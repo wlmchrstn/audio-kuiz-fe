@@ -1,6 +1,8 @@
 import {
   ANSWER_CREATE_SUCCESS,
   ANSWER_CREATE_FAIL,
+  ANSWER_UPDATE_SCORE_SUCCESS,
+  ANSWER_UPDATE_SCORE_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -28,6 +30,21 @@ const ReducerAnswer = (state = initialState, action) => {
         loading: payload.loading,
         message: payload.message,
         messageStatus: 'failed',
+      }
+    case ANSWER_UPDATE_SCORE_SUCCESS:
+      return {
+        ...state,
+        buttonLoading: payload.buttonLoading,
+        message: payload.message,
+        messageStatus: payload.messageStatus,
+        answer: payload.answer,
+      }
+    case ANSWER_UPDATE_SCORE_FAIL:
+      return {
+        ...state,
+        buttonLoading: payload.buttonLoading,
+        message: payload.message,
+        messageStatus: payload.messageStatus,
       }
     default:
       return state;

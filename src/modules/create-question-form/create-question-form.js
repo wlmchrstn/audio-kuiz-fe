@@ -71,7 +71,7 @@ const CreateQuestionForm = ({ id, setIsOpen, setNotification, setRefresh }) => {
         )}
       </div>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Waktu Pertanyaan'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Waktu Pertanyaan (detik)'}</Paragraph>
         <Input>
           <input type={'number'} {...register('question_time', { required: true })} />
         </Input>
@@ -80,7 +80,7 @@ const CreateQuestionForm = ({ id, setIsOpen, setNotification, setRefresh }) => {
         )}
       </div>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Waktu Menjawab'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Waktu Menjawab (detik)'}</Paragraph>
         <Input>
           <input type={'number'} {...register('answer_time', { required: true })} />
         </Input>

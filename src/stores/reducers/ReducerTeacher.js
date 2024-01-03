@@ -2,6 +2,8 @@ import {
   TEACHER_GET_ALL,
   TEACHER_CREATE_SUCCESS,
   TEACHER_CREATE_FAIL,
+  TEACHER_DELETE_SUCCESS,
+  TEACHER_DELETE_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -42,6 +44,21 @@ const ReducerTeacher = (state = initialState, action) => {
     case TEACHER_CREATE_FAIL:
       return {
         ...state,
+        loading: payload.loading,
+        buttonLoading: payload.buttonLoading,
+        message: payload.message,
+        messageStatus: payload.messageStatus,
+      }
+    case TEACHER_DELETE_SUCCESS:
+      return {
+        ...state,
+        loading: payload.loading,
+        buttonLoading: payload.buttonLoading,
+        message: payload.message,
+        messageStatus: payload.messageStatus,
+      }
+    case TEACHER_DELETE_FAIL:
+      return {
         loading: payload.loading,
         buttonLoading: payload.buttonLoading,
         message: payload.message,

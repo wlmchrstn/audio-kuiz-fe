@@ -3,6 +3,10 @@
 .form {
   display: flex;
   flex-direction: column;
+
+  .select {
+    margin-inline-start: -3px;
+  }
 }
 
 .form-field:not(:last-child) {

@@ -5,6 +5,8 @@ import {
   TEACHER_GET_ALL,
   TEACHER_CREATE_SUCCESS,
   TEACHER_CREATE_FAIL,
+  TEACHER_DELETE_SUCCESS,
+  TEACHER_DELETE_FAIL,
 } from './types';
 
 export const getTeacherAll = (notification, navigate) => async dispatch => {
@@ -21,7 +23,7 @@ export const getTeacherAll = (notification, navigate) => async dispatch => {
     }
 
     const { data: response } = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/api/teacher/get-all`
+      `${process.env.REACT_APP_BASE_URL}/api/teacher/active`
     );
 
     dispatch({
@@ -36,7 +38,7 @@ export const getTeacherAll = (notification, navigate) => async dispatch => {
       dispatch({
         type: UNAUTHENTICATED,
       });
-      navigate('/student-login');
+      navigate('/admin-login');
     };
 
     if (error.response.status === 401) {
@@ -93,7 +95,7 @@ export const createTeacher = (data, modal, notification, refresh, navigate) => a
       dispatch({
         type: UNAUTHENTICATED,
       });
-      navigate('/student-login');
+      navigate('/admin-login');
     };
 
     if (error.response.status === 401) {
@@ -115,4 +117,61 @@ export const createTeacher = (data, modal, notification, refresh, navigate) => a
 
     notification(true);
   }
+};
+
+export const deleteTeacher = (id, notification, refresh, navigate) => async dispatch => {
+  try {
+    dispatch({
+      type: TEACHER_DELETE_SUCCESS,
+      payload: {
+        buttonLoading: true,
+      },
+    });
+
+    if (sessionStorage.getItem('token')) {
+      setToken(sessionStorage.getItem('token'));
+    };
+
+    const { data: response } = await axios.delete(
+      `${process.env.REACT_APP_BASE_URL}/api/teacher/delete/${id}`
+    );
+
+    dispatch({
+      type: TEACHER_DELETE_SUCCESS,
+      payload: {
+        buttonLoading: false,
+        message: response.message || 'Teacher deleted',
+        messageStatus: 'success',
+      },
+    });
+
+    notification(true);
+    refresh(prev => !prev);
+  } catch(error) {
+    if (error.response.status === 403) {
+      dispatch({
+        type: UNAUTHENTICATED,
+      });
+      navigate('/admin-login');
+    };
+
+    if (error.response.status === 401) {
+      dispatch({
+        type: UNAUTHENTICATED,
+      });
+      navigate('/');
+    };
+
+    dispatch({
+      type: TEACHER_DELETE_FAIL,
+      payload: {
+        loading: false,
+        buttonLoading: false,
+        message: error.response.data.message || 'Unexpected error',
+        messageStatus: 'failed'
+      }
+    });
+
+    notification(true);
+  };
 };

@@ -21,7 +21,7 @@ import CreateQuestionForm from '../../modules/create-question-form/create-questi
 import EditQuestionForm from '../../modules/edit-question-form/edit-question-form';
 
 // Icons
-import iconPlus from '../../assets/icons/fi_plus.svg';
+import { ReactComponent as PlusIcon } from '../../assets/icons/fi_plus.svg';
 
 // Actions
 import { getExamEdit, publishExam, unpublishExam, deleteExam } from '../../stores/actions/ActionExam';
@@ -52,6 +52,11 @@ const ExamEditPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
 
+  useEffect(() => {
+    dispatch(getExamResultByExamId(id, setNotification, navigate));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handlePublish = async () => {
     dispatch(publishExam(id, setNotification, navigate));
   };
@@ -68,17 +73,12 @@ const ExamEditPage = () => {
     dispatch(getQuestionForEdit(id, setIsEditQuestionOpen, navigate));
   };
 
-  useEffect(() => {
-    dispatch(getExamResultByExamId(id, setNotification, navigate));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const mapQuestion = () => {
     return (
       <>
         <div className={styles['button-add']} onClick={() => setIsOpen(true)}>
-          <img src={iconPlus} alt={'fi_plus'} />
-          <Paragraph variant={'body-2'} color={'neutral'}>{'Tambah Pertanyaan'}</Paragraph>
+          <PlusIcon stroke={'#486581'} />
+          <Paragraph variant={'body-2'} color={'neutral-4'}>{'Tambah Pertanyaan'}</Paragraph>
         </div>
         {examQuestionList.length !== 0 ? (
           <div className={styles.exams}>
@@ -102,6 +102,8 @@ const ExamEditPage = () => {
           <div className={styles.result} key={index}>
             <div className={styles['result-left']}>
               <Title variant={'title'}>{value.student.name}</Title>
+              <Title variant={'title'}>{value.student.nim}</Title>
+              <Title variant={'title'}>{value.student.prodi}</Title>
             </div>
             <div className={styles['result-right']}>
               <Button type={'button'} onClick={() => navigate(`/exam-result/${value._id}`)}>{'Lihat hasil ujian'}</Button>
@@ -111,7 +113,7 @@ const ExamEditPage = () => {
       })
     } else {
       return (
-        <Spinner variant={'page'} />
+        <div>{'Belum ada hasil ujian'}</div>
       );
     }
   };

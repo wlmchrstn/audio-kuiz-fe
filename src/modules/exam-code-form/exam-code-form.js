@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
 import Spinner from '../../components/spinner/spinner';
+import Paragraph from '../../components/paragraph/paragraph';
 
 // Actions
 import { takeStudentExam } from '../../stores/actions/ActionExam';
@@ -30,6 +31,7 @@ const ExamCodeForm = ({ setNotification }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleExamCode)}>
       <div className={styles['form-field']}>
+        <Paragraph variant={'body-2'}>{'Kode Ujian'}</Paragraph>
         <Input>
           <input type={'text'} placeholder={'Kode Ujian'} {...register('exam_code', { required: true })} />
         </Input>
