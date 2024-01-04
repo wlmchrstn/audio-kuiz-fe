@@ -45,7 +45,7 @@ const ExamResultPage = () => {
   };
 
   const handleNilai = async (data) => {
-    return dispatch(updateAnswerScore(index, data, setNotification, setRefresh, navigate));
+    return dispatch(updateAnswerScore(index, data, setIsNilaiOpen, setNotification, setRefresh, navigate));
   };
 
   const mapAnswer = () => {
@@ -53,9 +53,6 @@ const ExamResultPage = () => {
       return examResult.answers.map((value, index) => {
         return (
           <div className={styles.wrapper} key={index}>
-            {/* <div>
-              {value.transcription || 'Transcription'}
-            </div> */}
             <div className={styles.question} dangerouslySetInnerHTML={{ __html: value.question.name }} />
             <div className={styles.answer}>
               <audio src={value.answer} controls />
@@ -63,6 +60,10 @@ const ExamResultPage = () => {
                 <Paragraph variant={'body-2'}>{`Nilai: ${value.score || 0}/${value.question.max_score}`}</Paragraph>
                 <Button className={styles.nilai} type={'button'} onClick={() => handleOpenNilai(value._id)}>{'Beri nilai'}</Button>
               </div>
+            </div>
+            <div>{'Transcription:'}</div>
+            <div>
+              {value.transcription || 'Transcription'}
             </div>
           </div>
         )

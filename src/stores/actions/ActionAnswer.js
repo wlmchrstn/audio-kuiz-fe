@@ -34,15 +34,18 @@ export const createAnswer = (questionId, examResultId, data, setStep, examStep, 
 
           axios.post(`${process.env.REACT_APP_BASE_URL}/api/answer/create/${examResultId}/${questionId}`, req)
             .then((response) => {
-              dispatch({
-                type: ANSWER_CREATE_SUCCESS,
-                payload: {
-                  loading: false,
-                  message: response.message,
-                  messageStatus: 'success',
-                  answer: response.data.result,
-                },
-              });
+              axios.get(`${process.env.REACT_APP_BASE_URL}/api/answer/transcript/${response.data.result._id}`)
+                .then((response) => {
+                  dispatch({
+                    type: ANSWER_CREATE_SUCCESS,
+                    payload: {
+                      loading: false,
+                      message: response.message,
+                      messageStatus: 'success',
+                      answer: response.data.result,
+                    },
+                  });
+                });
             });
         };
       });
@@ -91,7 +94,7 @@ export const createAnswer = (questionId, examResultId, data, setStep, examStep, 
   }
 };
 
-export const updateAnswerScore = (id, data, notification, refresh, navigate) => async dispatch => {
+export const updateAnswerScore = (id, data, modal, notification, refresh, navigate) => async dispatch => {
   try {
     dispatch({
       type: ANSWER_UPDATE_SCORE_SUCCESS,
@@ -119,6 +122,7 @@ export const updateAnswerScore = (id, data, notification, refresh, navigate) => 
       },
     });
 
+    modal(false);
     refresh(prev => !prev);
   } catch(error) {
     if (error.response.status === 403) {
