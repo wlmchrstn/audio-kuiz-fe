@@ -13,7 +13,7 @@ const StudentCard = ({ value, notification, refresh }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleDelete = (id) => {
-    if (window.confirm("Hapus mahasiswa?") === true) {
+    if (window.confirm("Are you sure to delete this student?") === true) {
       return dispatch(deleteStudent(id, notification, refresh, navigate));
     } else {
       return null;

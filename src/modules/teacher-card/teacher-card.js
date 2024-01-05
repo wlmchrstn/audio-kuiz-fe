@@ -13,7 +13,7 @@ const TeacherCard = ({ value, notification, refresh }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleDelete = (id) => {
-    if (window.confirm("Hapus dosen?") === true) {
+    if (window.confirm("Are you sure to delete this teacher?") === true) {
       return dispatch(deleteTeacher(id, notification, refresh, navigate));
     } else {
       return null;

@@ -34,6 +34,8 @@ const initialState = {
     },
     answers: []
   },
+  score: 0,
+  totalScore: 0,
 };
 
 const ReducerExamResult = (state = initialState, action) => {
@@ -84,6 +86,8 @@ const ReducerExamResult = (state = initialState, action) => {
         message: payload.message,
         messageStatus: payload.messageStatus,
         examResult: payload.examResult,
+        score: payload.score,
+        totalScore: payload.totalScore,
       }
     case EXAM_RESULT_GET_BY_EXAM_ID:
       return {

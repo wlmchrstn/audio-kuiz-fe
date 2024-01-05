@@ -18,8 +18,15 @@
 }
 
 .root:disabled {
-  background-color: $color-neutral;
-  border-color: $color-neutral;
+  background-color: $color-neutral-4;
+  border-color: $color-neutral-4;
+  color: $color-neutral-3;
+}
+
+.root:disabled:hover {
+  background-color: $color-neutral-4;
+  border-color: $color-neutral-4;
+  color: $color-neutral-3;
 }
 
 .primary {

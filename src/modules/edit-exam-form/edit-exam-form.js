@@ -38,7 +38,7 @@ const EditExamForm = ({ id, setIsEditOpen, setNotification }) => {
       <div className={styles['form-field']}>
         <Input>
           <select {...register('prodi', { required: true })} defaultValue={exam?.prodi}>
-            <option value={'Semua Program Studi'}>{'Semua Program Studi'}</option>
+            <option value={'Semua Program Studi'}>{'All Major'}</option>
             <option value={'Seni Tari'}>{'Seni Tari'}</option>
             <option value={'Seni Musik'}>{'Seni Musik'}</option>
             <option value={'Manajemen'}>{'Manajemen'}</option>
@@ -96,17 +96,6 @@ const EditExamForm = ({ id, setIsEditOpen, setNotification }) => {
           />
         </Input>
         {errors.exam_deadline && errors.exam_deadline.type === 'required' && (
-          <p className={styles.error}>{'*Required field*'}</p>
-        )}
-      </div>
-      <div className={styles['form-field']}>
-        <Input>
-          <select {...register('exam_type', { required: true })}>
-            <option value={'Automatic'}>{'Automatic'}</option>
-            <option value={'Manual'}>{'Manual'}</option>
-          </select>
-        </Input>
-        {errors.exam_type && errors.exam_type.type === 'required' && (
           <p className={styles.error}>{'*Required field*'}</p>
         )}
       </div>

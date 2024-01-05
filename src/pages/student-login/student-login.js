@@ -54,14 +54,14 @@ const StudentLoginPage = () => {
             variant={'heading-1'}
             color={'black'}
             weight={'bold'}
-          >{'Masuk sebagai mahasiswa'}</Title>
+          >{'Login as Student'}</Title>
           <Paragraph variant={'body-2'} className={styles.label}>
             {'NIM'}
           </Paragraph>
           <Input className={styles.input}>
             <input
               type={'text'}
-              placeholder={'Masukkan NIM'}
+              placeholder={'Enter NIM'}
               {...register('nim', { required: true })}
             />
           </Input>
@@ -74,7 +74,7 @@ const StudentLoginPage = () => {
           <Input className={styles.input}>
             <input
               type={'password'}
-              placeholder={'Masukkan password'}
+              placeholder={'Enter password'}
               {...register('password', { required: true })}
             />
           </Input>
@@ -82,7 +82,7 @@ const StudentLoginPage = () => {
             <p className={styles.error}>{'*Required field*'}</p>
           )}
           <Button type={'submit'} variant={'primary'} color={'white'}>
-            {buttonLoading ? <Spinner variant={'button'} /> : 'Masuk'}
+            {buttonLoading ? <Spinner variant={'button'} /> : 'Login'}
           </Button>
         </form>
       </div>

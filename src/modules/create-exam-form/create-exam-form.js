@@ -30,7 +30,7 @@ const CreateExamForm = ({ setIsOpen, setNotification, setRefresh }) => {
     <form className={styles.form} onSubmit={handleSubmit(handleForm)}>
       <div className={styles['form-field']}>
         <Input>
-          <input type={'text'} placeholder={'Nama Ujian'} {...register('exam_title', { required: true })} />
+          <input type={'text'} placeholder={'Exam Title'} {...register('exam_title', { required: true })} />
         </Input>
         {errors.exam_title && errors.exam_title.type === 'required' && (
           <p className={styles.error}>{'*Required field*'}</p>
@@ -39,7 +39,7 @@ const CreateExamForm = ({ setIsOpen, setNotification, setRefresh }) => {
       <div className={styles['form-field']}>
         <Input>
           <select {...register('prodi', { required: true })}>
-            <option value={'Semua Program Studi'}>{'Semua Program Studi'}</option>
+            <option value={'Semua Program Studi'}>{'All Major'}</option>
             <option value={'Seni Tari'}>{'Seni Tari'}</option>
             <option value={'Seni Musik'}>{'Seni Musik'}</option>
             <option value={'Manajemen'}>{'Manajemen'}</option>
@@ -67,7 +67,7 @@ const CreateExamForm = ({ setIsOpen, setNotification, setRefresh }) => {
                 showTimeInput
                 timeFormat="HH:mm"
                 dateFormat="d MMMM yyyy, h:mm a"
-                placeholderText='Pilih Tanggal Mulai Ujian'
+                placeholderText='Select Exam Start Date'
                 onChange={(date) => field.onChange(date)}
                 selected={field.value}
               />
@@ -89,7 +89,7 @@ const CreateExamForm = ({ setIsOpen, setNotification, setRefresh }) => {
                 showTimeInput
                 timeFormat="HH:mm"
                 dateFormat="d MMMM yyyy, h:mm a"
-                placeholderText='Pilih Tanggal Pengumpulan Ujian'
+                placeholderText='Select Exam End Date'
                 onChange={(date) => field.onChange(date)}
                 selected={field.value}
               />
@@ -100,19 +100,8 @@ const CreateExamForm = ({ setIsOpen, setNotification, setRefresh }) => {
           <p className={styles.error}>{'*Required field*'}</p>
         )}
       </div>
-      <div className={styles['form-field']}>
-        <Input>
-          <select {...register('exam_type', { required: true })}>
-            <option value={'Automatic'}>{'Automatic'}</option>
-            <option value={'Manual'}>{'Manual'}</option>
-          </select>
-        </Input>
-        {errors.exam_type && errors.exam_type.type === 'required' && (
-          <p className={styles.error}>{'*Required field*'}</p>
-        )}
-      </div>
       <Button variant={'primary'} type={'submit'}>
-        {buttonLoading ? <Spinner variant={'button'} /> : 'Tambahkan Ujian'}
+        {buttonLoading ? <Spinner variant={'button'} /> : 'Add Exam'}
       </Button>
     </form>
   );

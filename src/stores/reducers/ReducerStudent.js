@@ -32,7 +32,6 @@ const ReducerStudent = (state = initialState, action) => {
         message: payload.message,
         messageStatus: payload.messageStatus,
         student: payload.student,
-        studentExamList: payload.studentExamList,
       }
     case STUDENT_GET_ALL:
       return {

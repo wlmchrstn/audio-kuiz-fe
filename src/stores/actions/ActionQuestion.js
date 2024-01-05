@@ -1,7 +1,5 @@
 import axios from "axios";
 import { setToken } from '../../utils/helper';
-import { convertToRaw } from "draft-js";
-import draftToHtml from 'draftjs-to-html';
 import {
   UNAUTHENTICATED,
   QUESTION_CREATE_SUCCESS,
@@ -135,10 +133,8 @@ export const updateQuestion = (id, data, name, modal, notification, refresh, nav
 
     let question;
 
-    console.log(typeof data.name);
     if (typeof data.name === 'object') {
       question = name;
-      console.log('if');
     } else {
       question = data.name;
     }
@@ -167,29 +163,30 @@ export const updateQuestion = (id, data, name, modal, notification, refresh, nav
     refresh(prev => !prev);
     notification(true);
   } catch(error) {
-    console.log(error);
-    // if (error.response.status === 403) {
-    //   dispatch({
-    //     type: UNAUTHENTICATED,
-    //   });
-    //   navigate('/teacher-login');
-    // };
 
-    // if (error.response.status === 401) {
-    //   dispatch({
-    //     type: UNAUTHENTICATED,
-    //   });
-    //   navigate('/');
-    // };
+    if (error.response.status === 403) {
+      dispatch({
+        type: UNAUTHENTICATED,
+      });
+      navigate('/teacher-login');
+    };
 
-    // dispatch({
-    //   type: QUESTION_UPDATE_FAIL,
-    //   payload: {
-    //     buttonLoading: false,
-    //     message: error.response.data.message || 'Unexpected Error',
-    //   }
-    // })
+    if (error.response.status === 401) {
+      dispatch({
+        type: UNAUTHENTICATED,
+      });
+      navigate('/');
+    };
 
-    // notification(true);
+    dispatch({
+      type: QUESTION_UPDATE_FAIL,
+      payload: {
+        buttonLoading: false,
+        message: error.response.data.message || 'Unexpected Error',
+        messageStatus: 'failed',
+      }
+    })
+
+    notification(true);
   };
 };

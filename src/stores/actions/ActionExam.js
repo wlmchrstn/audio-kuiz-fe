@@ -485,35 +485,49 @@ export const takeStudentExam = (data, notification, navigate) => async dispatch 
       `${process.env.REACT_APP_BASE_URL}/api/exam/get-code/${data.exam_code}`
     );
 
-    let {
-      _id, exam_title, exam_code,
-      prodi, exam_date, exam_deadline,
-      exam_type, status, teacher, questions } = response.result;
+    if (response.success === false) {
+      dispatch({
+        type: EXAM_TAKE_CODE_FAIL,
+        payload: {
+          buttonLoading: false,
+          message: response.message,
+          messageStatus: 'failed',
+        }
+      })
 
-    let exam = {
-      id: _id,
-      exam_title,
-      exam_code,
-      prodi,
-      exam_date,
-      exam_deadline,
-      exam_type,
-      status,
-      teacher,
-    };
+      notification(true);
+    } else {
+      let {
+        _id, exam_title, exam_code,
+        prodi, exam_date, exam_deadline,
+        exam_type, status, teacher, questions } = response.result;
+
+      let exam = {
+        id: _id,
+        exam_title,
+        exam_code,
+        prodi,
+        exam_date,
+        exam_deadline,
+        exam_type,
+        status,
+        teacher,
+      };
 
 
-    dispatch({
-      type: EXAM_TAKE_CODE_SUCCESS,
-      payload: {
-        buttonLoading: false,
-        message: response.message,
-        exam,
-        examQuestionList: questions,
-      }
-    });
+      dispatch({
+        type: EXAM_TAKE_CODE_SUCCESS,
+        payload: {
+          buttonLoading: false,
+          message: response.message,
+          exam,
+          examQuestionList: questions,
+        }
+      });
 
-    navigate(`/student/exam/${exam_code}`);
+      navigate(`/student/exam/${exam_code}`);
+    }
+
   } catch(error) {
     if (error?.response.status === 403) {
       dispatch({
@@ -534,6 +548,7 @@ export const takeStudentExam = (data, notification, navigate) => async dispatch 
       payload: {
         buttonLoading: false,
         message: error.response.data.message || 'Unexpected Error',
+        messageStatus: 'failed',
       }
     });
 

@@ -47,7 +47,7 @@ const TeacherPage = () => {
       return (
         <>
           <div className={styles['empty-exam']}>
-            <Paragraph variant={'body-1'} className={styles['empty-exam-label']}>{'Kamu tidak punya ujian saat ini'}</Paragraph>
+            <Paragraph variant={'body-1'} className={styles['empty-exam-label']}>{`You don't have any exam yet`}</Paragraph>
           </div>
         </>
       );
@@ -85,13 +85,13 @@ const TeacherPage = () => {
           className={styles['header-heading']}
           variant={'heading-1'}
           weight={'bold'}
-        >{'Daftar Ujian'}</Title>
+        >{'Exam List'}</Title>
         <div className={styles['header-button']}>
           <Button
             type={'button'}
             variant={'primary'}
             onClick={() => setIsOpen(true)}
-          >{'Tambah Ujian'}</Button>
+          >{'Add Exam'}</Button>
         </div>
       </div>
       {loading ? null : mapExam()}

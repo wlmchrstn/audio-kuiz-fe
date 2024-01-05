@@ -54,7 +54,7 @@ const AdminPage = () => {
         <>
           <div className={styles['button-add']} onClick={() => setTeacherIsOpen(true)}>
             <PlusIcon stroke='#fff'/>
-            <p>{'Tambah dosen'}</p>
+            <p>{'Add Teacher'}</p>
           </div>
           {ReducerTeacher.teacherList.map((value, index) => {
             return (
@@ -64,7 +64,7 @@ const AdminPage = () => {
         </>
       );
     } else {
-      return <div>{'Belum ada dosen'}</div>
+      return <div>{'There is no teacher'}</div>
     }
   };
 
@@ -74,7 +74,7 @@ const AdminPage = () => {
         <>
           <div className={styles['button-add']} onClick={() => setStudentIsOpen(true)}>
             <PlusIcon stroke='#fff'/>
-            <p>{'Tambah mahasiswa'}</p>
+            <p>{'Add Student'}</p>
           </div>
           {ReducerStudent.studentList.map((value, index) => {
             return (
@@ -84,7 +84,7 @@ const AdminPage = () => {
         </>
       );
     } else {
-      return <div>{'Belum ada mahasiswa'}</div>
+      return <div>{'There is no student'}</div>
     }
   }
 
@@ -122,14 +122,14 @@ const AdminPage = () => {
       <div className={styles.content}>
         {view === 'Teacher' ? (
           <>
-            <Title className={styles.header} tagElement={'h1'} variant={'heading-1'} weight={'medium'} color={'white'}>{'Daftar dosen'}</Title>
+            <Title className={styles.header} tagElement={'h1'} variant={'heading-1'} weight={'medium'} color={'white'}>{'Teacher List'}</Title>
             <div className={styles.list}>
               {ReducerTeacher.loading ? <Spinner variant={'page'} /> : mapTeacher()}
             </div>
           </>
         ) : view === 'Student' ? (
           <>
-            <Title className={styles.header} tagElement={'h1'} variant={'heading-1'} weight={'medium'} color={'white'}>{'Daftar mahasiswa'}</Title>
+            <Title className={styles.header} tagElement={'h1'} variant={'heading-1'} weight={'medium'} color={'white'}>{'Student List'}</Title>
             <div className={styles.list}>
               {ReducerStudent.loading ? <Spinner variant={'page'} /> : mapStudent()}
             </div>

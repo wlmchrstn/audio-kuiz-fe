@@ -19,7 +19,7 @@ const StudentExamResultPage = () => {
   const [notification, setNotification] = useState(false);
   const {
     loading, message, messageStatus,
-    examResult,
+    examResult, score, totalScore,
   } = useSelector(state => state.ReducerExamResult);
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const StudentExamResultPage = () => {
             </div>
             <div>{'Transcription:'}</div>
             <div>
-              {value.transcription || 'Transcription'}
+              {value.transcription || 'Transcription not available'}
             </div>
           </div>
         )
@@ -70,10 +70,13 @@ const StudentExamResultPage = () => {
               weight={'bold'}
             >{examResult?.exam.exam_title}</Title>
             <Paragraph variant={'body-2'}>
-              {`Tanggal Ujian: ${moment(examResult?.exam.exam_date).format('LLLL')}`}
+              {`Exam Taken Date: ${moment(examResult?.createdAt).format('LLLL')}`}
             </Paragraph>
             <Paragraph variant={'body-2'}>
-              {`Dosen Pengampu: ${examResult?.exam.teacher?.name}`}
+              {`Teacher: ${examResult?.exam.teacher?.name}`}
+            </Paragraph>
+            <Paragraph variant={'body-1'}>
+              {`Total Score: ${Math.floor(score/totalScore*100)}% or ${score}/${totalScore}`}
             </Paragraph>
           </div>
           <div className={styles.container}>

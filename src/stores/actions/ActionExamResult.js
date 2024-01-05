@@ -135,13 +135,22 @@ export const getExamResultById = (id, notification, navigate) => async dispatch 
 
     const { data: response } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/exam-result/get-exam-result/${id}`)
 
+    let score = 0;
+    let totalScore = 0;
+    for(let i = 0; i < response.result.answers.length; i++) {
+      score += (response.result.answers[i].score || 0);
+      totalScore += response.result.answers[i].question.max_score;
+    };
+
     dispatch({
       type: EXAM_RESULT_GET_BY_ID,
       payload: {
         loading: false,
         message: response.result.message,
         messageStatus: 'success',
-        examResult: response.result
+        examResult: response.result,
+        score: score,
+        totalScore: totalScore
       },
     });
   } catch(error) {

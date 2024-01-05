@@ -31,6 +31,10 @@
   flex-direction: column;
 }
 
+.list > *:not(:last-child) {
+  margin-bottom: 12px;
+}
+
 .wrapper {
   padding: 12px;
   border: 1px solid #000;
@@ -56,5 +60,28 @@
     max-width: 120px;
     padding: 8px 12px;
     margin-top: auto;
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  button {
+    max-width: 240px;
+  }
+}
+
+.proof-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+
+  img {
+    width: 320px;
+    height: 240px;
   }
 }

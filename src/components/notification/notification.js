@@ -16,6 +16,7 @@ const Notification = ({ message, variant, show, setShow }) => {
         return () => {
             clearTimeout(timeId);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [show]);
 
     if (!show) return null;

@@ -15,13 +15,13 @@ const LandingPage = () => {
         <div className={styles.header} />
         <div className={styles.wrapper}>
           <Button type={"button"} onClick={() => navigate('/student-login')} variant={'secondary'}>
-            {'Masuk sebagai mahasiswa'}
+            {'Login as Student'}
           </Button>
           <Button type={"button"} onClick={() => navigate('/teacher-login')} variant={'secondary'}>
-            {'Masuk sebagai dosen'}
+            {'Login as Teacher'}
           </Button>
           <Button type={"button"} onClick={() => navigate('/admin-login')} variant={'secondary'}>
-            {'Masuk sebagai admin'}
+            {'Login as Admin'}
           </Button>
         </div>
       </div>

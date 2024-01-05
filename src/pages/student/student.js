@@ -20,6 +20,7 @@ import { getStudentExamResult } from '../../stores/actions/ActionExamResult';
 
 const StudentPage = () => {
   const [notification, setNotification] = useState(false);
+  const [examCodeNotification, setExamCodeNotification] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const StudentPage = () => {
     loading, message, messageStatus,
     examResultList,
   } = useSelector(state => state.ReducerExamResult);
+  const ReducerExam = useSelector(state => state.ReducerExam);
 
   useEffect(() => {
     dispatch(getStudentExamResult(setNotification, navigate));
@@ -46,7 +48,7 @@ const StudentPage = () => {
       return (
         <div className={styles['empty-exam']}>
           <Paragraph variant={'body-1'} className={styles['empty-exam-label']}>
-            {'Kamu belum ada mengambil ujian saat ini'}
+            {`You haven't take any exam yet`}
           </Paragraph>
         </div>
       );
@@ -60,7 +62,7 @@ const StudentPage = () => {
         onClose={() => setIsOpen(false)}
         className={styles.modal}
       >
-        <ExamCodeForm setNotification={setNotification} />
+        <ExamCodeForm setNotification={setExamCodeNotification} />
       </Modal>
       <Notification
         message={message}
@@ -68,19 +70,25 @@ const StudentPage = () => {
         show={notification}
         setShow={setNotification}
       />
+      <Notification
+        message={ReducerExam.message}
+        variant={ReducerExam.messageStatus}
+        show={examCodeNotification}
+        setShow={setExamCodeNotification}
+      />
       <div className={styles.header}>
         <Title
           tagElement={'h1'}
           className={styles['header-heading']}
           variant={'heading-1'}
           weight={'bold'}
-        >{'Daftar ujian yang sudah kamu kerjakan'}</Title>
+        >{'Exam List'}</Title>
         <div className={styles['header-button']}>
           <Button
             type={'button'}
             variant={'primary'}
             onClick={() => setIsOpen(true)}
-          >{'Ambil Ujian'}</Button>
+          >{'Take Exam'}</Button>
         </div>
       </div>
       {loading ? <Spinner variant={'page'} /> : mapExamResult()}

@@ -28,9 +28,9 @@ const CreateStudentForm = ({ setIsOpen, setNotification, setRefresh }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleForm)}>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Nama Lengkap'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Full Name'}</Paragraph>
         <Input>
-          <input type={'text'} placeholder={'Nama Lengkap'} {...register('name', { required: true })} />
+          <input type={'text'} placeholder={'Full Name'} {...register('name', { required: true })} />
         </Input>
         {errors.name && errors.name.type === 'required' && (
           <p className={styles.error}>{'*Required field*'}</p>
@@ -46,7 +46,7 @@ const CreateStudentForm = ({ setIsOpen, setNotification, setRefresh }) => {
         )}
       </div>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Program Studi'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Major'}</Paragraph>
         <Input>
           <select {...register('prodi', { required: true })}>
             <option value={'Seni Tari'}>{'Seni Tari'}</option>

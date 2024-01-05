@@ -10,6 +10,7 @@ import Button from '../../components/button/button';
 import Title from '../../components/title/title';
 import Paragraph from '../../components/paragraph/paragraph';
 import Spinner from '../../components/spinner/spinner';
+import CustomWebcam from '../../components/webcam/webcam';
 
 // Actions
 import { createExamResult } from '../../stores/actions/ActionExamResult';
@@ -25,16 +26,18 @@ const StudentExamPage = () => {
   const dispatch = useDispatch();
   const [notification, setNotification] = useState(false);
   const { status, startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({ video: false });
-  const [recordStatus, setRecordStatus] = useState("");
+  const [, setRecordStatus] = useState("");
   const { buttonLoading } = useSelector(
-      state => state.ReducerStudent
+    state => state.ReducerStudent
   );
   const { exam, examQuestionList } = useSelector(
     state => state.ReducerExam
   );
   const { examResult } = useSelector(state => state.ReducerExamResult);
   const { exam_code } = useParams();
-
+  const [webcam, setWebcam] = useState(false);
+  const [cameraPermission, setCameraPermission] = useState(false);
+  const [micPermission, setMicPermission] = useState(false);
   useLayoutEffect(() => {
     if (exam.exam_title === '') {
       dispatch(getExamByExamCode(exam_code, setNotification, navigate));
@@ -89,14 +92,24 @@ const StudentExamPage = () => {
   const mapUjian = () => {
     return (
       <div>
+        <div className={styles.timer}>
+          <Title tagElement={'h1'} variant={'heading-1'}>
+            {`Question Number ${questionNumber+1}`}
+          </Title>
+          <CustomWebcam width={320} height={180} audio={false} timer={timer} examResultId={examResult.id}/>
+          <Title variant={'heading-1'}>{`Timer: ${timer}`}</Title>
+        </div>
         <div className={styles['question-wrapper']}>
           <div className={styles['question-name']} dangerouslySetInnerHTML={{ __html: examQuestionList[questionNumber].name }}></div>
         </div>
-        <Paragraph variant={'body-1'}>`{`Timer: ${timer}`}</Paragraph>
-        <Paragraph variant={'body-1'}>{`Rekaman akan dimulai dalam: ${examQuestionList[questionNumber].question_time}`}</Paragraph>
-        <Paragraph variant={'body-1'}>{`Waktu menjawab akan selesai dalam: ${examQuestionList[questionNumber].answer_time}`}</Paragraph>
-        <Paragraph variant={'body-1'}>{recordStatus}</Paragraph>
-        <Paragraph variant={'body-1'}>{mediaBlobUrl}</Paragraph>
+        {examStep === 'question' ? (
+          <>
+            <Paragraph variant={'heading-1'}>{`You have ${examQuestionList[questionNumber].question_time} second to prepare`}</Paragraph>
+            <Paragraph variant={'heading-1'}>{`You have ${examQuestionList[questionNumber].answer_time} to answer the question`}</Paragraph>
+          </>
+        ) : (
+          <Paragraph variant={'heading-1'}>{'Recording started, now is your time to answer!'}</Paragraph>
+        )}
       </div>
     );
   };
@@ -105,32 +118,79 @@ const StudentExamPage = () => {
     return (
       <div>
         <Title tagElement={'h1'} variant={'heading-1'}>
-          {'Ujian telah selesai, jawabanmu sedang disimpan'}
+          {'Exam finished, Your answer will be saved'}
         </Title>
         <Button variant={'primary'} type={'button'} onClick={() => navigate('/student')}>
           {buttonLoading ? (
             <Spinner variant={'button'} />
           ) : (
-            'Kembali ke halaman murid'
+            'Back to dashboard'
           )}
         </Button>
       </div>
     );
   };
 
+  navigator.permissions.query({ name: 'camera' })
+  .then(function(permissionStatus){
+    if (permissionStatus.state === 'granted') {
+      setCameraPermission(true);
+    }
+    permissionStatus.onchange = function() {
+      if (this.state === 'granted') {
+        setCameraPermission(true);
+      }
+    }
+  });
+
+  navigator.permissions.query({ name: 'microphone' })
+  .then(function(permissionStatus) {
+    if (permissionStatus.state === 'granted') {
+      setMicPermission(true);
+    }
+
+    permissionStatus.onchange = function() {
+      if (this.state === 'granted') {
+        setMicPermission(true);
+      }
+    }
+  });
+
+  const testCamMic = () => {
+    setWebcam(true);
+  };
+
   return (
     <section className={styles.root}>
       {step === 'initial' ? (
-        <div className={styles['exam-info']}>
-          <Title variant={'heading-1'}>{exam?.exam_title}</Title>
-          <Paragraph variant={'body-1'}>{`Program studi: ${exam?.prodi}`}</Paragraph>
-          <Paragraph variant={'body-1'}>{`Tanggal Ujian: ${moment(exam?.exam_date).format('LLLL')}`}</Paragraph>
-          <Paragraph variant={'body-1'}>{`Kode Ujian: ${exam?.exam_code}`}</Paragraph>
-          <Paragraph variant={'body-1'}>{`Dosen Pengampu: ${exam?.teacher.name}`}</Paragraph>
-          <div className={styles['button-wrapper']}>
-            <Button variant={'primary'} type={'button'} onClick={() => handleStartExam()}>{'Mulai Ujian'}</Button>
+        <>
+          <div className={styles['exam-info']}>
+            <Title variant={'heading-1'}>{exam?.exam_title}</Title>
+            <Paragraph variant={'body-1'}>{`Major: ${exam?.prodi}`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`Exam Date: ${moment(exam?.exam_date).format('LLLL')}`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`Exam Deadline: ${moment(exam?.exam_deadline).format('LLLL')}`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`Exam Code: ${exam?.exam_code}`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`Teacher: ${exam?.teacher.name}`}</Paragraph>
+            <div style={{ textAlign: 'center' }}>
+              <Title tagElement={'h1'} variant={'heading-2'} weight={'medium'}>{'Read before taking exam'}</Title>
+            </div>
+            <Paragraph variant={'body-1'}>{`1. Please make sure you are in a quiet place before taking the exam to prevent mistranscription of your answer`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`2. You will need to open cam and microphone to take this exam`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`3. Each question will be give automatically, you will have a set preparation time to read the question`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`4. After the preparation time out, The recording will start automatically and record your answer based on the given time`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`5. After the answer period finish, you will be automatically move to the next question and will repeat the process above`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`6. After all question has been through, a finish screen will be displayed and you can go back to your dashboard`}</Paragraph>
+            <div className={styles['button-wrapper']}>
+              <Button variant={'primary'} type={'button'} onClick={() => testCamMic()}>{'Test Camera And Mic'}</Button>
+              <Button variant={'primary'} type={'button'} onClick={() => handleStartExam()} disabled={cameraPermission === true && micPermission === true ? false : true}>{'Start Exam'}</Button>
+            </div>
           </div>
-        </div>
+          {webcam ? (
+            <div className={styles.webcam} style={{ marginTop: '24px'}}>
+              <CustomWebcam width={720} height={405} audio={false} />
+            </div>
+          ) : null}
+        </>
       ) : step === 'start' ? (
         mapUjian()
       ) : mapFinishUjian()}

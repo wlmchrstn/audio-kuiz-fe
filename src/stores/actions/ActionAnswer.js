@@ -60,7 +60,7 @@ export const createAnswer = (questionId, examResultId, data, setStep, examStep, 
           examResult: response.result,
         },
       });
-      console.log(response.result);
+
       setStep('finish');
     } else {
       setQuestionNumber(prev => prev+1);

@@ -3,8 +3,7 @@
 .exams {
   &-item {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 16px;
     border: 1px solid $color-neutral-4;
     border-radius: 10px;
@@ -21,14 +20,14 @@
   }
 
   &-teacher {
-    margin-top: 24px;
+    margin-top: auto;
   }
 
   &-action {
     display: flex;
     flex-direction: row;
     gap: 5px;
-    margin-top: auto;
+    margin-top: 8px;
   }
 
   &-edit-button {
@@ -44,26 +43,34 @@
   &-code:hover {
     cursor: pointer;
   }
+}
 
-  .status-wrapper {
-    padding: 4px 8px;
-    border-radius: 5px;
-    max-width: 48px;
-    cursor: default;
-    text-align: center;
-  }
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 24px;
+}
 
-  .Pending {
-    background-color: $color-yellow;
-  }
+.status-wrapper {
+  padding: 4px 8px;
+  border-radius: 5px;
+  max-width: 80px;
+  cursor: default;
+  text-align: center;
+  margin-top: 8px;
+}
 
-  .Published {
-    background-color: $color-green;
-  }
+.Pending {
+  background-color: $color-yellow;
+}
 
-  .Archived {
-    background-color: $color-neutral-2;
-  }
+.Published {
+  background-color: $color-green;
+}
+
+.Archived {
+  background-color: $color-neutral-2;
 }
 
 .react-datepicker-wrapper {

@@ -29,8 +29,12 @@
 }
 
 .button-wrapper {
-    width: 200px;
-    align-self: center;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 400px;
+  align-self: center;
+  margin-top: 12px;
 }
 
 .question-wrapper {
@@ -44,4 +48,17 @@
   padding: 12px;
   border: 1px solid #000;
   margin-bottom: 8px;
+}
+
+.timer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.webcam {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

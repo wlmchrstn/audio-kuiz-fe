@@ -31,9 +31,9 @@ const ExamCodeForm = ({ setNotification }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleExamCode)}>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Kode Ujian'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Exam Code'}</Paragraph>
         <Input>
-          <input type={'text'} placeholder={'Kode Ujian'} {...register('exam_code', { required: true })} />
+          <input type={'text'} placeholder={'Exam Code'} {...register('exam_code', { required: true })} />
         </Input>
         {errors.exam_code && errors.exam_name.type === 'required' && (
           <p className={styles.error}>*Required field*</p>
@@ -43,7 +43,7 @@ const ExamCodeForm = ({ setNotification }) => {
         {buttonLoading ? (
           <Spinner variant={'button'} />
         ) : (
-          'Ambil Ujian'
+          'Take Exam'
         )}
       </Button>
     </form>

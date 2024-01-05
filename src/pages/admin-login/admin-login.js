@@ -54,14 +54,14 @@ const AdminLoginPage = () => {
             variant={'heading-1'}
             color={'black'}
             weight={'bold'}
-          >{'Login sebagai admin'}</Title>
+          >{'Login as Admin'}</Title>
           <Paragraph variant={'body-2'} className={styles.label}>
             {'Username'}
           </Paragraph>
           <Input className={styles.input}>
             <input
               type={'text'}
-              placeholder={'Masukkan Username'}
+              placeholder={'Enter Username'}
               {...register('username', { required: true })}
             />
           </Input>
@@ -74,7 +74,7 @@ const AdminLoginPage = () => {
           <Input className={styles.input}>
             <input
               type={'password'}
-              placeholder={'Masukkan Password'}
+              placeholder={'Enter Password'}
               {...register('password', { required: true })}
             />
           </Input>

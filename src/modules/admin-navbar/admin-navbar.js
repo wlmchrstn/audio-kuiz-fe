@@ -18,11 +18,11 @@ const AdminNavbar = ({ view, setView }) => {
     <div className={styles.container}>
       <div className={classNames(styles['nav-item'], view === 'Teacher' ? styles.selected : null)} onClick={() => setView('Teacher')}>
         <UserLogo stroke='#bcccdc' />
-        <p>{'Dosen'}</p>
+        <p>{'Teacher'}</p>
       </div>
       <div className={classNames(styles['nav-item'], view === 'Student' ? styles.selected : null)} onClick={() => setView('Student')}>
         <UserLogo stroke='#bcccdc' />
-        <p>{'Mahasiswa'}</p>
+        <p>{'Student'}</p>
       </div>
       <div className={classNames(styles['nav-item'], view === 'Logout' ? styles.selected : null)} onClick={() => handleLogout()}>
         <PowerLogo stroke='#bcccdc' />

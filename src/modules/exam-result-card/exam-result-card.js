@@ -10,7 +10,7 @@ import Button from '../../components/button/button';
 
 const ExamResultCard = ({ value }) => {
   const navigate = useNavigate();
-  console.log(value);
+
   return (
     <div className={styles.container}>
       <Title
@@ -20,13 +20,13 @@ const ExamResultCard = ({ value }) => {
           weight={'bold'}
         >{value.exam.exam_title}</Title>
       <Paragraph variant={'body-2'}>
-        {`Tanggal Ujian: ${moment(value.exam.exam_date).format('LLLL')}`}
+        {`Exam Date: ${moment(value.exam.exam_date).format('LLLL')}`}
       </Paragraph>
       <Paragraph variant={'body-2'}>
-        {`Dosen Pengampu: ${value.exam.teacher.name}`}
+        {`Teacher: ${value.exam.teacher.name}`}
       </Paragraph>
       <div className={styles.button} onClick={() => navigate(`/student-result/${value._id}`)}>
-        <Button type={'button'} variant={'primary'}>{'Lihat hasil ujian'}</Button>
+        <Button type={'button'} variant={'primary'}>{'See exam result'}</Button>
       </div>
     </div>
   );

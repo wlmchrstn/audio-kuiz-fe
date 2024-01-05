@@ -66,7 +66,11 @@ const ExamEditPage = () => {
   };
 
   const handleDelete = async () => {
-    dispatch(deleteExam(id, setNotification, navigate));
+    if (window.confirm("Are you sure to delete this exam?") === true) {
+      return dispatch(deleteExam(id, setNotification, navigate));
+    } else {
+      return null;
+    }
   };
 
   const handleEditQuestion = (id) => {
@@ -78,9 +82,9 @@ const ExamEditPage = () => {
       <>
         <div className={styles['button-add']} onClick={() => setIsOpen(true)}>
           <PlusIcon stroke={'#486581'} />
-          <Paragraph variant={'body-2'} color={'neutral-4'}>{'Tambah Pertanyaan'}</Paragraph>
+          <Paragraph variant={'body-2'} color={'neutral-4'}>{'Add Question'}</Paragraph>
         </div>
-        {examQuestionList.length !== 0 ? (
+        {examQuestionList?.length !== 0 ? (
           <div className={styles.exams}>
             {examQuestionList.map((value, index) => {
               return <QuestionCard value={value} key={index} onClick={() => handleEditQuestion(value._id)} />;
@@ -88,7 +92,7 @@ const ExamEditPage = () => {
           </div>
         ) : (
           <div className={styles['empty-question']}>
-            <Paragraph variant={'body-1'} className={styles['empty-exam-label']}>{'Belum ada pertanyaan'}</Paragraph>
+            <Paragraph variant={'body-1'} className={styles['empty-exam-label']}>{'There is no question'}</Paragraph>
           </div>
         )}
       </>
@@ -106,14 +110,14 @@ const ExamEditPage = () => {
               <Title variant={'title'}>{value.student.prodi}</Title>
             </div>
             <div className={styles['result-right']}>
-              <Button type={'button'} onClick={() => navigate(`/exam-result/${value._id}`)}>{'Lihat hasil ujian'}</Button>
+              <Button type={'button'} onClick={() => navigate(`/exam-result/${value._id}`)}>{'See exam result'}</Button>
             </div>
           </div>
         )
       })
     } else {
       return (
-        <div>{'Belum ada hasil ujian'}</div>
+        <div>{'There is no result'}</div>
       );
     }
   };
@@ -176,13 +180,13 @@ const ExamEditPage = () => {
                 {exam?.exam_title}
               </Title>
               <Title tagElement={'h2'} variant={'title-1'}>
-                {`Program Studi: ${exam?.prodi}`}
+                {`Major: ${exam?.prodi}`}
               </Title>
               <Paragraph variant={'body-1'}>
-                {`Tanggal Ujian: ${moment(exam?.exam_date).format('LLLL')}`}
+                {`Exam Date: ${moment(exam?.exam_date).format('LLLL')}`}
               </Paragraph>
               <Paragraph variant={'body-1'}>
-                {`Dosen Pengampu: ${exam?.teacher.name}`}
+                {`Teacher: ${exam?.teacher.name}`}
               </Paragraph>
             </div>
             <div className={styles['exam-right']}>
@@ -194,11 +198,11 @@ const ExamEditPage = () => {
               <div className={styles['button-group']}>
                 {exam?.status === 'Published' ? (
                   <Button variant={'primary'} type={'button'} className={styles.publish} onClick={() => handleUnpublish()}>
-                    {buttonLoading ? <Spinner variant={'button'} /> : 'Unpublish Ujian'}
+                    {buttonLoading ? <Spinner variant={'button'} /> : 'Unpublish Exam'}
                   </Button>
                 ) : (
                   <Button variant={'primary'} type={'button'} className={styles.publish} onClick={() => handlePublish()}>
-                    {buttonLoading ? <Spinner variant={'button'} /> : 'Publish Ujian'}
+                    {buttonLoading ? <Spinner variant={'button'} /> : 'Publish Exam'}
                   </Button>
                 )}
                 <Button variant={'secondary'} type={'button'} className={styles['exam-code']} onClick={() => copyToClipboard(exam.exam_code)}>
@@ -222,10 +226,10 @@ const ExamEditPage = () => {
           <>
             <div className={styles.navigation}>
               <Button type={'button'} onClick={() => setView('pertanyaan')}>
-                {'Daftar pertanyaan'}
+                {'Question List'}
               </Button>
               <Button type={'button'} onClick={() => setView('hasil')}>
-                {'Hasil Ujian'}
+                {'Exam Result'}
               </Button>
             </div>
             {view === 'pertanyaan' ? mapQuestion() : mapAnswer()}

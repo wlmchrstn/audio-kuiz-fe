@@ -45,7 +45,7 @@ const CreateQuestionForm = ({ id, setIsOpen, setNotification, setRefresh }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleQuestion)}>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Pertanyaan'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Question'}</Paragraph>
         <div className={styles.wysiwyg}>
           <Editor
             editorState={editorState}
@@ -62,7 +62,7 @@ const CreateQuestionForm = ({ id, setIsOpen, setNotification, setRefresh }) => {
         )}
       </div>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Skor Maksimal'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Max Score'}</Paragraph>
         <Input>
           <input type={'number'} {...register('max_score', { required: true })} />
         </Input>
@@ -71,7 +71,7 @@ const CreateQuestionForm = ({ id, setIsOpen, setNotification, setRefresh }) => {
         )}
       </div>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Waktu Pertanyaan (detik)'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Preparation Time (second)'}</Paragraph>
         <Input>
           <input type={'number'} {...register('question_time', { required: true })} />
         </Input>
@@ -80,7 +80,7 @@ const CreateQuestionForm = ({ id, setIsOpen, setNotification, setRefresh }) => {
         )}
       </div>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Waktu Menjawab (detik)'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Answer Time (second)'}</Paragraph>
         <Input>
           <input type={'number'} {...register('answer_time', { required: true })} />
         </Input>
@@ -89,7 +89,7 @@ const CreateQuestionForm = ({ id, setIsOpen, setNotification, setRefresh }) => {
         )}
       </div>
       <Button variant={'primary'} type={'submit'}>
-        {buttonLoading ? <Spinner variant={'button'} /> : 'Tambahkan Pertanyaan'}
+        {buttonLoading ? <Spinner variant={'button'} /> : 'Add Question'}
       </Button>
     </form>
   );

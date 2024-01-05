@@ -42,7 +42,6 @@ export const getStudent = (notification, navigate) => async dispatch => {
         message: response.message,
         messageStatus: 'success',
         student: student,
-        studentExamList: response.result.exam_taken,
       }
     });
 
@@ -52,7 +51,7 @@ export const getStudent = (notification, navigate) => async dispatch => {
       dispatch({
         type: UNAUTHENTICATED,
       });
-      navigate('/admin-login');
+      navigate('/student-login');
     };
 
     if (error.response.status === 401) {
@@ -66,6 +65,8 @@ export const getStudent = (notification, navigate) => async dispatch => {
       type: STUDENT_GET,
       payload: {
         loading: false,
+        message: error.response.data.message,
+        messageStatus: 'failed',
       }
     });
 
