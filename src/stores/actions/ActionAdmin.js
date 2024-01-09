@@ -26,8 +26,6 @@ export const getAdmin = (notification, navigate) => async dispatch => {
       type: ADMIN_GET,
       payload: {
         loading: false,
-        message: response.message || 'Get Admin',
-        messageStatus: 'success',
         admin: response.result,
       }
     });

@@ -3,10 +3,11 @@
 .root {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 0 auto;
   max-width: $max-width-sm;
   padding: 16px 24px;
+  height:  100vh;
 
   @include tablet() {
     max-width: $max-width-md;
@@ -18,15 +19,25 @@
   }
 }
 
-.header {
+.content {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
+  flex-direction: column;
+  margin-left: 24px;
+  border-left: 1px solid $color-neutral-4;
+  padding-left: 24px;
+  width: 100%;
+  box-sizing: border-box;
 
-  &-button {
-    max-width: 240px;
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+
+    &-button {
+      max-width: 240px;
+    }
   }
 }
 
@@ -34,4 +45,28 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid $color-neutral-4;
+  border-radius: 8px;
+
+  &-right {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: flex-end;
+
+    .edit {
+      width: 60px;
+    }
+
+    .password {
+      width: 150px;
+    }
+  }
 }

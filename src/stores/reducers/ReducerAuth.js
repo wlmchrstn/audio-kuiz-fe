@@ -7,6 +7,7 @@ import {
   STUDENT_LOGIN_FAIL,
   ADMIN_LOGIN_SUCCESS,
   ADMIN_LOGIN_FAIL,
+  VERIFY_ACCOUNT,
 } from '../actions/types';
 
 const initialState = {
@@ -17,6 +18,10 @@ const initialState = {
   buttonLoading: false,
   message: '',
   messageStatus: '',
+  auth: {
+    id: ''
+  },
+  verification: '',
 }
 
 const ReducerAuth = (state = initialState, action) => {
@@ -39,7 +44,9 @@ const ReducerAuth = (state = initialState, action) => {
         loading: payload.loading,
         buttonLoading: payload.buttonLoading,
         message: payload.message,
-        messageStatus: 'success'
+        messageStatus: 'success',
+        auth: payload.auth,
+        verification: payload.verification,
       };
     case TEACHER_LOGIN_FAIL:
       sessionStorage.removeItem('token');
@@ -63,7 +70,9 @@ const ReducerAuth = (state = initialState, action) => {
         loading: payload.loading,
         buttonLoading: payload.buttonLoading,
         message: payload.message,
-        messageStatus: 'success'
+        messageStatus: 'success',
+        auth: payload.auth,
+        verification: payload.verification,
       };
     case STUDENT_LOGIN_FAIL:
       sessionStorage.removeItem('token');
@@ -101,6 +110,14 @@ const ReducerAuth = (state = initialState, action) => {
         message: payload.message,
         messageStatus: 'failed',
       };
+    case VERIFY_ACCOUNT:
+      return {
+        ...state,
+        loading: payload.loading,
+        buttonLoading: payload.buttonLoading,
+        message: payload.message,
+        messageStatus: payload.messageStatus
+      }
     default:
       return state;
   };

@@ -3,10 +3,11 @@
 .root {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 0 auto;
   max-width: $max-width-sm;
   padding: 16px 24px;
+  height: 100vh;
 
   @include tablet() {
     max-width: $max-width-md;
@@ -18,27 +19,26 @@
   }
 }
 
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-
-  &-button {
-    max-width: 240px;
-  }
-}
-
-.form {
-  width: 600px;
+.content {
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
-}
+  margin-left: 24px;
+  border-left: 1px solid $color-neutral-4;
+  padding-left: 24px;
+  width: 100%;
+  box-sizing: border-box;
 
-.form-field:not(:last-child) {
-  margin-bottom: 8px;
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+
+    &-button {
+      max-width: 240px;
+    }
+  }
 }
 
 .exams {
@@ -47,6 +47,26 @@
   gap: 32px;
 }
 
-.error {
-  color: $color-red;
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid $color-neutral-4;
+  border-radius: 8px;
+
+  &-right {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: flex-end;
+
+    .edit {
+      width: 60px;
+    }
+
+    .password {
+      width: 150px;
+    }
+  }
 }

@@ -96,7 +96,6 @@ const StudentExamPage = () => {
           <Title tagElement={'h1'} variant={'heading-1'}>
             {`Question Number ${questionNumber+1}`}
           </Title>
-          <CustomWebcam width={320} height={180} audio={false} timer={timer} examResultId={examResult.id}/>
           <Title variant={'heading-1'}>{`Timer: ${timer}`}</Title>
         </div>
         <div className={styles['question-wrapper']}>
@@ -110,6 +109,7 @@ const StudentExamPage = () => {
         ) : (
           <Paragraph variant={'heading-1'}>{'Recording started, now is your time to answer!'}</Paragraph>
         )}
+        <CustomWebcam className={styles.webcam} width={320} height={180} audio={false} timer={timer} examResultId={examResult.id}/>
       </div>
     );
   };
@@ -186,8 +186,8 @@ const StudentExamPage = () => {
             </div>
           </div>
           {webcam ? (
-            <div className={styles.webcam} style={{ marginTop: '24px'}}>
-              <CustomWebcam width={720} height={405} audio={false} />
+            <div className={styles['webcam-container']} style={{ marginTop: '24px'}}>
+              <CustomWebcam width={720} height={405} audio={true} />
             </div>
           ) : null}
         </>

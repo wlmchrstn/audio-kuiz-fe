@@ -3,7 +3,7 @@ import Webcam from "react-webcam";
 import axios from "axios";
 import { setToken } from "../../utils/helper";
 
-const CustomWebcam = ({ width, height, audio, timer, examResultId }) => {
+const CustomWebcam = ({ className, width, height, audio, timer, examResultId }) => {
   const webcamRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
 
@@ -37,9 +37,7 @@ const CustomWebcam = ({ width, height, audio, timer, examResultId }) => {
   }, [webcamRef]);
 
   return (
-    <div className="container">
-      <Webcam height={height} width={width} ref={webcamRef} audio={audio} />
-    </div>
+    <Webcam className={className} height={height} width={width} ref={webcamRef} audio={audio} />
   );
 };
 
