@@ -4,6 +4,8 @@ import {
   QUESTION_GET_FOR_EDIT,
   QUESTION_UPDATE_SUCCESS,
   QUESTION_UPDATE_FAIL,
+  QUESTION_DELETE_SUCCESS,
+  QUESTION_DELETE_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -51,7 +53,7 @@ const ReducerQuestion = (state = initialState, action) => {
     case QUESTION_UPDATE_SUCCESS:
       return {
         ...state,
-        buttonLoading: payload.loading,
+        buttonLoading: payload.buttonLoading,
         message: payload.message,
         messageStatus: 'success',
         question: payload.question,
@@ -59,9 +61,23 @@ const ReducerQuestion = (state = initialState, action) => {
     case QUESTION_UPDATE_FAIL:
       return {
         ...state,
-        buttonLoading: payload.loading,
+        buttonLoading: payload.buttonLoading,
         message: payload.message,
         messageStatus: 'failed',
+      }
+    case QUESTION_DELETE_SUCCESS:
+      return {
+        ...state,
+        buttonLoading: payload.buttonLoading,
+        message: payload.message,
+        messageStatus: payload.messageStatus,
+      }
+    case QUESTION_DELETE_FAIL:
+      return {
+        ...state,
+        buttonLoading: payload.buttonLoading,
+        message: payload.message,
+        messageStatus: payload.messageStatus,
       }
     default:
       return state;

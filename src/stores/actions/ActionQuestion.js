@@ -7,6 +7,8 @@ import {
   QUESTION_GET_FOR_EDIT,
   QUESTION_UPDATE_SUCCESS,
   QUESTION_UPDATE_FAIL,
+  QUESTION_DELETE_SUCCESS,
+  QUESTION_DELETE_FAIL,
 } from './types';
 
 export const createQuestion = (id, data, modal, notification, setRefresh, navigate) => async dispatch => {
@@ -180,6 +182,62 @@ export const updateQuestion = (id, data, name, modal, notification, refresh, nav
 
     dispatch({
       type: QUESTION_UPDATE_FAIL,
+      payload: {
+        buttonLoading: false,
+        message: error.response.data.message || 'Unexpected Error',
+        messageStatus: 'failed',
+      }
+    })
+
+    notification(true);
+  };
+};
+
+export const deleteQuestion = (id, notification, refresh, navigate) => async dispatch => {
+  try {
+    dispatch({
+      type: QUESTION_DELETE_SUCCESS,
+      payload: {
+        buttonLoading: true,
+      },
+    });
+
+    if (sessionStorage.getItem('token')) {
+      setToken(sessionStorage.getItem('token'));
+    };
+
+    const { data: response } = await axios.delete(
+      `${process.env.REACT_APP_BASE_URL}/api/question/delete/${id}`
+    );
+
+    dispatch({
+      type: QUESTION_DELETE_SUCCESS,
+      payload: {
+        buttonLoading: false,
+        message: response.message || 'Question deleted',
+        messageStatus: 'success',
+      }
+    });
+
+    notification(true);
+    refresh(prev => !prev);
+  } catch(error) {
+    if (error.response.status === 403) {
+      dispatch({
+        type: UNAUTHENTICATED,
+      });
+      navigate('/teacher-login');
+    };
+
+    if (error.response.status === 401) {
+      dispatch({
+        type: UNAUTHENTICATED,
+      });
+      navigate('/');
+    };
+
+    dispatch({
+      type: QUESTION_DELETE_FAIL,
       payload: {
         buttonLoading: false,
         message: error.response.data.message || 'Unexpected Error',

@@ -30,12 +30,18 @@ const ReducerAuth = (state = initialState, action) => {
   switch(type) {
     case UNAUTHENTICATED:
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('role');
+      sessionStorage.removeItem('verification');
       return state;
     case LOGOUT:
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('role');
+      sessionStorage.removeItem('verification');
       return state;
     case TEACHER_LOGIN_SUCCESS:
       sessionStorage.setItem('token', payload.token);
+      sessionStorage.setItem('role', payload.role);
+      sessionStorage.setItem('verification', payload.verification);
       return {
         ...state,
         token: payload.token,
@@ -50,6 +56,8 @@ const ReducerAuth = (state = initialState, action) => {
       };
     case TEACHER_LOGIN_FAIL:
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('role');
+      sessionStorage.removeItem('verification');
       return {
         ...state,
         token: '',
@@ -62,6 +70,8 @@ const ReducerAuth = (state = initialState, action) => {
       };
     case STUDENT_LOGIN_SUCCESS:
       sessionStorage.setItem('token', payload.token);
+      sessionStorage.setItem('role', payload.role);
+      sessionStorage.setItem('verification', payload.verification);
       return {
         ...state,
         token: payload.token,
@@ -76,6 +86,8 @@ const ReducerAuth = (state = initialState, action) => {
       };
     case STUDENT_LOGIN_FAIL:
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('role');
+      sessionStorage.removeItem('verification');
       return {
         ...state,
         token: '',

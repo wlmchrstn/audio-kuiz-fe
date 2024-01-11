@@ -22,18 +22,20 @@ const VerifyAccountPage = () => {
   const [notification, setNotification] = useState(false);
 
   useEffect(() => {
-    if (AuthReducer.auth?.role === 'Teacher') {
+    if (sessionStorage.role === 'Teacher') {
       dispatch(checkVerification(id, 'teacher'));
-    } else if (AuthReducer.auth?.role === 'Student') {
+    } else if (sessionStorage.role === 'Student') {
       dispatch(checkVerification(id, 'student'));
+    } else {
+      navigate('/', { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleVerify = () => {
-    if (AuthReducer.auth?.role === 'Teacher') {
+    if (sessionStorage.role === 'Teacher') {
       dispatch(sendVerificationRequest(id, 'teacher', setNotification));
-    } else if (AuthReducer.auth?.role === 'Student') {
+    } else if (sessionStorage.role === 'Student') {
       dispatch(sendVerificationRequest(id, 'student', setNotification))
     }
   };
@@ -47,13 +49,16 @@ const VerifyAccountPage = () => {
         setShow={setNotification}
       />
       <div className={styles.content}>
-        {(AuthReducer.verification === '') ? (
+        {(sessionStorage.verification === '') ? (
           <>
             <Spinner variant={'page'} />
           </>
-        ) : (AuthReducer.verification === 'Unverified') ? (
+        ) : (sessionStorage.verification === 'Unverified') ? (
           <>
-            <Title tagElement={'h1'} variant={'heading-1'} weight={'medium'}>
+            <Title tagElement={'h1'} variant={'heading-1'} weight={'bold'}>
+              {'Your account is not verified yet!'}
+            </Title>
+            <Title tagElement={'h2'} variant={'heading-2'} weight={'medium'}>
               {'Click here to verify your account'}
             </Title>
             <Paragraph variant={'title-1'}>

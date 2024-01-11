@@ -87,7 +87,7 @@ const ExamEditPage = () => {
         {examQuestionList?.length !== 0 ? (
           <div className={styles.exams}>
             {examQuestionList.map((value, index) => {
-              return <QuestionCard value={value} key={index} onClick={() => handleEditQuestion(value._id)} />;
+              return <QuestionCard value={value} key={index} onClick={() => handleEditQuestion(value._id)} notification={setQuestionNotification} refresh={setRefresh} />;
             })}
           </div>
         ) : (

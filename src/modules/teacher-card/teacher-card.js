@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from './teacher-card.module.scss';
 
+// Assets
 import { ReactComponent as UserIcon } from '../../assets/icons/fi_user.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/fi_trash.svg';
 
