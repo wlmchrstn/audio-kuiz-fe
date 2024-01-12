@@ -81,7 +81,7 @@ const StudentPage = () => {
             weight={'medium'}
           >{`Name: ${student?.name}`}</Title>
           <Paragraph variant={'title-1'}>{`NIM: ${student?.nim}`}</Paragraph>
-          <Paragraph variant={'title-1'}>{`Major: ${student?.prodi}`}</Paragraph>
+          <Paragraph variant={'title-1'}>{`Major: ${student?.major?.name}`}</Paragraph>
           <Paragraph variant={'title-1'}>{`Email: ${student?.email}`}</Paragraph>
           <Paragraph variant={'title-1'}>{`Status: ${student?.status}`}</Paragraph>
         </div>

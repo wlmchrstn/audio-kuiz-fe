@@ -1,0 +1,40 @@
+@use '../../styles/' as *;
+
+.container {
+  display: flex;
+  border: 1px solid $color-neutral-2;
+  border-radius: 8px;
+  height: 132px;
+  box-sizing: border-box;
+  padding: 16px;
+
+  svg {
+    width: 100px;
+    height: 100px;
+    margin-right: 8px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: $color-white;
+}
+
+.cta {
+  display: flex;
+  margin-left: auto;
+  align-items: flex-start;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  svg:hover {
+    stroke: $color-red;
+  }
+}

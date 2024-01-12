@@ -21,7 +21,7 @@ const initialState = {
   student: {
     name: '',
     nim: '',
-    prodi: '',
+    major: {},
     email: '',
     status: '',
   },

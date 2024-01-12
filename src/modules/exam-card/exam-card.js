@@ -12,7 +12,7 @@ import Button from '../../components/button/button';
 
 const ExamCard = ({ value, setClipboard }) => {
   const navigate = useNavigate();
-  const { prodi, status, exam_title, exam_code, exam_date, exam_deadline, teacher, _id } = value;
+  const { major, status, exam_title, exam_code, exam_date, exam_deadline, teacher, _id } = value;
 
   return (
     <div className={styles['exams-item']}>
@@ -24,7 +24,7 @@ const ExamCard = ({ value, setClipboard }) => {
       >{exam_title}</Title>
       <div className={styles.content}>
         <div className={styles['exams-wrapper']}>
-          <Paragraph variant={'body-2'} className={styles['exams-prodi']}>{prodi}</Paragraph>
+          <Paragraph variant={'body-2'} className={styles['exams-major']}>{major.name}</Paragraph>
           <div className={styles['exams-teacher']}>{`Created by ${teacher.name}`}</div>
         </div>
         <div className={classNames(styles['exams-wrapper'], styles['exams-wrapper-right'])}>

@@ -6,6 +6,7 @@ import ReducerStudent from './ReducerStudent';
 import ReducerExamResult from './ReducerExamResult';
 import ReducerAnswer from './ReducerAnswer';
 import ReducerTeacher from './ReducerTeacher';
+import ReducerMajor from './ReducerMajor';
 
 const rootReducer = combineReducers({
   ReducerAuth,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   ReducerExamResult,
   ReducerAnswer,
   ReducerTeacher,
+  ReducerMajor,
 });
 
 export default rootReducer;

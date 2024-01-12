@@ -166,7 +166,7 @@ const StudentExamPage = () => {
         <>
           <div className={styles['exam-info']}>
             <Title variant={'heading-1'}>{exam?.exam_title}</Title>
-            <Paragraph variant={'body-1'}>{`Major: ${exam?.prodi}`}</Paragraph>
+            <Paragraph variant={'body-1'}>{`Major: ${exam?.major?.name}`}</Paragraph>
             <Paragraph variant={'body-1'}>{`Exam Date: ${moment(exam?.exam_date).format('LLLL')}`}</Paragraph>
             <Paragraph variant={'body-1'}>{`Exam Deadline: ${moment(exam?.exam_deadline).format('LLLL')}`}</Paragraph>
             <Paragraph variant={'body-1'}>{`Exam Code: ${exam?.exam_code}`}</Paragraph>

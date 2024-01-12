@@ -20,6 +20,7 @@ import TeacherEditForm from '../../modules/teacher-edit-form/teacher-edit-form';
 import { getAllExam } from '../../stores/actions/ActionExam';
 import { getTeacher } from '../../stores/actions/ActionTeacher';
 import { requestChangePasswordTeacher } from '../../stores/actions/ActionTeacher';
+import { getMajorAll } from '../../stores/actions/ActionMajor';
 
 const TeacherPage = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const TeacherPage = () => {
   useEffect(() => {
     dispatch(getAllExam(setNotification, navigate));
     dispatch(getTeacher(setTeacherNotification, navigate));
+    dispatch(getMajorAll(setNotification));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
 

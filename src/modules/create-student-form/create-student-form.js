@@ -23,6 +23,23 @@ const CreateStudentForm = ({ setIsOpen, setNotification, setRefresh }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { buttonLoading } = useSelector(state => state.ReducerTeacher);
+  const ReducerMajor = useSelector(state => state.ReducerMajor);
+
+  const mapMajorOption = () => {
+    if (ReducerMajor.majorList.length !== 0) {
+      return (
+        <>
+          {ReducerMajor.majorList.map((value, index) => {
+            return (
+              <option key={index} value={value._id}>{value.name}</option>
+            )
+          })}
+        </>
+      )
+    } else {
+      return null;
+    }
+  };
 
   const handleForm = async (data) => dispatch(createStudent(data, setIsOpen, setNotification, setRefresh, navigate));
   return (
@@ -48,20 +65,11 @@ const CreateStudentForm = ({ setIsOpen, setNotification, setRefresh }) => {
       <div className={styles['form-field']}>
         <Paragraph variant={'body-2'}>{'Major'}</Paragraph>
         <Input>
-          <select {...register('prodi', { required: true })}>
-            <option value={'Seni Tari'}>{'Seni Tari'}</option>
-            <option value={'Seni Musik'}>{'Seni Musik'}</option>
-            <option value={'Manajemen'}>{'Manajemen'}</option>
-            <option value={'Akuntansi'}>{'Akuntansi'}</option>
-            <option value={'Pendidikan Bahasa Mandarin'}>{'Pendidikan Bahasa Mandarin'}</option>
-            <option value={'Teknik Perangkat Lunak'}>{'Teknik Perangkat Lunak'}</option>
-            <option value={'Teknik Informatika'}>{'Teknik Informatika'}</option>
-            <option value={'Sistem Informasi'}>{'Sistem Informasi'}</option>
-            <option value={'Teknik Lingkungan'}>{'Teknik Lingkungan'}</option>
-            <option value={'Teknik Industri'}>{'Teknik Industri'}</option>
+          <select {...register('major', { required: true })}>
+            {mapMajorOption()}
           </select>
         </Input>
-        {errors.prodi && errors.prodi.type === 'required' && (
+        {errors.major && errors.major.type === 'required' && (
           <p className={styles.error}>{'*Required field*'}</p>
         )}
       </div>

@@ -1,8 +1,7 @@
 import React from 'react';
-import styles from './exam-code-form.module.scss';
+import styles from './create-major-form.module.scss';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 // Components
 import Input from '../../components/input/input';
@@ -11,30 +10,29 @@ import Spinner from '../../components/spinner/spinner';
 import Paragraph from '../../components/paragraph/paragraph';
 
 // Actions
-import { takeStudentExam } from '../../stores/actions/ActionExam';
+import { createMajor } from '../../stores/actions/ActionMajor';
 
-const ExamCodeForm = ({ setNotification }) => {
+const CreateMajorForm = ({ setNotification, setIsOpen, setRefresh }) => {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
   const dispatch = useDispatch();
-  const { buttonLoading } = useSelector(state => state.ReducerStudent);
-  const navigate = useNavigate();
+  const { buttonLoading } = useSelector(state => state.ReducerMajor);
 
-  const handleExamCode = async (data) => {
-    dispatch(takeStudentExam(data, setNotification, navigate));
-  };
+  const handleCreate = async (data) => {
+    dispatch(createMajor(data, setNotification, setIsOpen, setRefresh));
+  }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(handleExamCode)}>
+    <form className={styles.form} onSubmit={handleSubmit(handleCreate)}>
       <div className={styles['form-field']}>
-        <Paragraph variant={'body-2'}>{'Exam Code'}</Paragraph>
+        <Paragraph variant={'body-2'}>{'Major name'}</Paragraph>
         <Input>
-          <input type={'text'} placeholder={'Exam Code'} {...register('exam_code', { required: true })} />
+          <input type={'text'} placeholder={'Major name'} {...register('name', { required: true })} />
         </Input>
-        {errors.exam_code && errors.exam_name.type === 'required' && (
+        {errors.name && errors.name.type === 'required' && (
           <p className={styles.error}>*Required field*</p>
         )}
       </div>
@@ -42,11 +40,11 @@ const ExamCodeForm = ({ setNotification }) => {
         {buttonLoading ? (
           <Spinner variant={'button'} />
         ) : (
-          'Take Exam'
+          'Add Major'
         )}
       </Button>
     </form>
-  );
+  )
 };
 
-export default ExamCodeForm;
+export default CreateMajorForm;

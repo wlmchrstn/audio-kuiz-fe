@@ -73,6 +73,7 @@ const ReducerMajor = (state = initialState, action) => {
         buttonLoading: payload.buttonLoading,
         message: payload.message,
         messageStatus: payload.messageStatus,
+        major: payload.major,
       }
     case MAJOR_DELETE_SUCCESS:
       return {

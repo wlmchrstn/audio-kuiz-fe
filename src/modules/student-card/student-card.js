@@ -27,7 +27,7 @@ const StudentCard = ({ value, notification, refresh }) => {
         <p>{value.name}</p>
         <p>{value.nim}</p>
         <p>{value.email}</p>
-        <p>{value.prodi}</p>
+        <p>{value.major?.name}</p>
         <p>{value.status}</p>
       </div>
       <div className={styles.cta} onClick={() => handleDelete(value._id)}>

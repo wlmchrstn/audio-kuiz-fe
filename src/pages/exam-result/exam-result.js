@@ -156,7 +156,7 @@ const ExamResultPage = () => {
           {`NIM: ${examResult?.student?.nim}`}
         </Paragraph>
         <Paragraph variant={'body-1'}>
-          {`Major: ${examResult?.student?.prodi}`}
+          {`Major: ${examResult?.student?.major?.name}`}
         </Paragraph>
         <Paragraph variant={'body-1'}>
           {`Total Score: ${Math.floor(score/totalScore*100)}% or ${score}/${totalScore}`}

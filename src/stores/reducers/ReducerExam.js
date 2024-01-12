@@ -23,7 +23,7 @@ const initialState = {
     id: '',
     exam_title: '',
     exam_code: '',
-    prodi: '',
+    major: {},
     exam_date: null,
     exam_deadline: null,
     exam_type: '',

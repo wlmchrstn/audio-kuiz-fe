@@ -24,6 +24,10 @@ const AdminNavbar = ({ view, setView }) => {
         <UserLogo stroke='#bcccdc' />
         <p>{'Student'}</p>
       </div>
+      <div className={classNames(styles['nav-item'], view === 'Major' ? styles.selected : null)} onClick={() => setView('Major')}>
+        <UserLogo stroke='#bcccdc' />
+        <p>{'Major'}</p>
+      </div>
       <div className={classNames(styles['nav-item'], view === 'Logout' ? styles.selected : null)} onClick={() => handleLogout()}>
         <PowerLogo stroke='#bcccdc' />
         <p>{'Logout'}</p>

@@ -37,7 +37,7 @@ export const createExam = (data, modal, notification, setRefresh, navigate) => a
       id: response.result._id,
       exam_title: response.result.exam_title,
       exam_code: response.result.exam_code,
-      prodi: response.result.prodi,
+      major: response.result.major,
       exam_date: response.result.exam_date,
       exam_deadline: response.result.exam_deadline,
       status: response.result.status,
@@ -160,7 +160,7 @@ export const getExamEdit = (id, notification, navigate) => async dispatch => {
       id: response.result._id,
       exam_title: response.result.exam_title,
       exam_code: response.result.exam_code,
-      prodi: response.result.prodi,
+      major: response.result.major,
       exam_date: response.result.exam_date,
       exam_deadline: response.result.exam_deadline,
       exam_type: response.result.exam_type,
@@ -226,7 +226,7 @@ export const updateExam = (id, data, modal, notification, navigate) => async dis
       id: response.result._id,
       exam_title: response.result.exam_title,
       exam_code: response.result.exam_code,
-      prodi: response.result.prodi,
+      major: response.result.major,
       exam_date: response.result.exam_date,
       exam_deadline: response.result.exam_deadline,
       exam_type: response.result.exam_type,
@@ -296,7 +296,7 @@ export const publishExam = (id, notification, navigate) => async dispatch => {
       id: response.result._id,
       exam_title: response.result.exam_title,
       exam_code: response.result.exam_code,
-      prodi: response.result.prodi,
+      major: response.result.major,
       exam_date: response.result.exam_date,
       exam_deadline: response.result.exam_deadline,
       exam_type: response.result.exam_type,
@@ -365,7 +365,7 @@ export const unpublishExam = (id, notification, navigate) => async dispatch => {
       id: response.result._id,
       exam_title: response.result.exam_title,
       exam_code: response.result.exam_code,
-      prodi: response.result.prodi,
+      major: response.result.major,
       exam_date: response.result.exam_date,
       exam_deadline: response.result.exam_deadline,
       exam_type: response.result.exam_type,
@@ -499,14 +499,14 @@ export const takeStudentExam = (data, notification, navigate) => async dispatch 
     } else {
       let {
         _id, exam_title, exam_code,
-        prodi, exam_date, exam_deadline,
+        major, exam_date, exam_deadline,
         exam_type, status, teacher, questions } = response.result;
 
       let exam = {
         id: _id,
         exam_title,
         exam_code,
-        prodi,
+        major,
         exam_date,
         exam_deadline,
         exam_type,
@@ -575,14 +575,14 @@ export const getExamByExamCode = (data, notification, navigate) => async dispatc
 
     let {
       _id, exam_title, exam_code,
-      prodi, exam_date, exam_deadline,
+      major, exam_date, exam_deadline,
       exam_type, status, teacher, questions } = response.result;
 
     let exam = {
       id: _id,
       exam_title,
       exam_code,
-      prodi,
+      major,
       exam_date,
       exam_deadline,
       exam_type,

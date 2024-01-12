@@ -27,6 +27,7 @@ import { ReactComponent as PlusIcon } from '../../assets/icons/fi_plus.svg';
 import { getExamEdit, publishExam, unpublishExam, deleteExam } from '../../stores/actions/ActionExam';
 import { getQuestionForEdit } from '../../stores/actions/ActionQuestion';
 import { getExamResultByExamId } from '../../stores/actions/ActionExamResult';
+import { getMajorAll } from '../../stores/actions/ActionMajor';
 
 const ExamEditPage = () => {
   const { id } = useParams();
@@ -54,6 +55,7 @@ const ExamEditPage = () => {
 
   useEffect(() => {
     dispatch(getExamResultByExamId(id, setNotification, navigate));
+    dispatch(getMajorAll(setNotification));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -107,7 +109,7 @@ const ExamEditPage = () => {
             <div className={styles['result-left']}>
               <Title variant={'title'}>{value.student.name}</Title>
               <Title variant={'title'}>{value.student.nim}</Title>
-              <Title variant={'title'}>{value.student.prodi}</Title>
+              <Title variant={'title'}>{value.student.major?.name}</Title>
             </div>
             <div className={styles['result-right']}>
               <Button type={'button'} onClick={() => navigate(`/exam-result/${value._id}`)}>{'See exam result'}</Button>
@@ -180,7 +182,7 @@ const ExamEditPage = () => {
                 {exam?.exam_title}
               </Title>
               <Title tagElement={'h2'} variant={'title-1'}>
-                {`Major: ${exam?.prodi}`}
+                {`Major: ${exam?.major?.name}`}
               </Title>
               <Paragraph variant={'body-1'}>
                 {`Exam Date: ${moment(exam?.exam_date).format('LLLL')}`}
