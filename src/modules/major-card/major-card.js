@@ -43,14 +43,18 @@ const MajorCard = ({ value, notification, refresh }) => {
         />
       </Modal>
       {/* <UserIcon stroke='#fff' /> */}
-      <div className={styles.wrapper}>
-        <p>{value.name}</p>
+      <div className={styles.left}>
+        <div className={styles.wrapper}>
+          <p>{value.name}</p>
+        </div>
       </div>
-      <Button variant={'primary'} type={'button'} onClick={() => setIsEditOpen(true)}>
-        {'Edit'}
-      </Button>
-      <div className={styles.cta} onClick={() => handleDelete(value._id)}>
-        <DeleteIcon stroke='#fff' />
+      <div className={styles.right}>
+        <Button variant={'primary'} type={'button'} onClick={() => setIsEditOpen(true)}>
+          {'Edit'}
+        </Button>
+        <div className={styles.cta} onClick={() => handleDelete(value._id)}>
+          <DeleteIcon stroke='#fff' />
+        </div>
       </div>
     </div>
   );

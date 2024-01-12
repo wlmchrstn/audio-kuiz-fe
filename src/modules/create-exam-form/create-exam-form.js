@@ -109,7 +109,7 @@ const CreateExamForm = ({ setIsOpen, setNotification, setRefresh }) => {
       </div>
       <div className={styles['form-field']}>
         <Input>
-          <select {...register('exam_language', { required: true })} defaultValue={exam?.exam_language}>
+          <select {...register('exam_language', { required: true })}>
             <option value={'en-US'}>{'English'}</option>
             <option value={'id-ID'}>{'Indonesia'}</option>
           </select>
