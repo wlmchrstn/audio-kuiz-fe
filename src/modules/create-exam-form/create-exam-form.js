@@ -107,6 +107,17 @@ const CreateExamForm = ({ setIsOpen, setNotification, setRefresh }) => {
           <p className={styles.error}>{'*Required field*'}</p>
         )}
       </div>
+      <div className={styles['form-field']}>
+        <Input>
+          <select {...register('exam_language', { required: true })} defaultValue={exam?.exam_language}>
+            <option value={'en-US'}>{'English'}</option>
+            <option value={'id-ID'}>{'Indonesia'}</option>
+          </select>
+        </Input>
+        {errors.exam_language && errors.exam_language.type === 'required' && (
+          <p className={styles.error}>{'*Required field*'}</p>
+        )}
+      </div>
       <Button variant={'primary'} type={'submit'}>
         {buttonLoading ? <Spinner variant={'button'} /> : 'Add Exam'}
       </Button>
